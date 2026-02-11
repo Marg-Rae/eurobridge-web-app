@@ -1,156 +1,44 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../api/axios.js";
-import Loading from "../components/Loading.jsx";
-import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const Home = () => {
-  const [authToken, setAuthToken] = useState(() => localStorage.getItem("authToken") || "");
-  const [apiState, setApiState] = useState({
-    loading: false,
-    error: "",
-    action: "",
-    data: null
-  });
-
-  const setToken = (token) => {
-    setAuthToken(token);
-    if (token) {
-      localStorage.setItem("authToken", token);
-    } else {
-      localStorage.removeItem("authToken");
+  const testimonials = [
+    {
+      name: "Lynn K.",
+      role: "Business English graduate",
+      quote: "My client calls are smoother and I finally speak without second-guessing.",
+      image: "/media/student-lynn-k.jpg"
+    },
+    {
+      name: "Samuel O.",
+      role: "German A2 learner",
+      quote: "The coaching labs gave me the confidence to pass my Goethe exam.",
+      image: "/media/student-samuel-o.jpg"
+    },
+    {
+      name: "Aisha M.",
+      role: "IELTS achiever",
+      quote: "Weekly feedback kept me focused, and I hit my target score in one cycle.",
+      image: "/media/student-aisha-m.jpg"
     }
-  };
+  ];
 
-  const formatResponse = (data) => {
-    if (Array.isArray(data)) {
-      return {
-        count: data.length,
-        preview: data.slice(0, 2)
-      };
+  const courses = [
+    {
+      title: "Chinese for Global Trade",
+      description: "Negotiation language, cross-cultural etiquette, and real-world scenarios.",
+      image: "/media/chinese-global-trade.jpg"
+    },
+    {
+      title: "English for Leadership",
+      description: "Presentation coaching, email polish, and executive presence.",
+      image: "/media/english-leadership.jpg"
+    },
+    {
+      title: "Community Language Labs",
+      description: "Conversation circles and cultural fluency workshops.",
+      image: "/media/community-labs.jpg"
     }
-
-    return data;
-  };
-
-  const runApiAction = async (label, handler, onSuccess) => {
-    setApiState({ loading: true, error: "", action: label, data: null });
-
-    try {
-      const result = await handler();
-      if (onSuccess) {
-        onSuccess(result);
-      }
-      setApiState({ loading: false, error: "", action: label, data: formatResponse(result) });
-    } catch (error) {
-      setApiState({
-        loading: false,
-        error: "Unable to reach the backend right now.",
-        action: label,
-        data: null
-      });
-    }
-  };
-
-  const authHeaders = authToken ? { Authorization: `Bearer ${authToken}` } : {};
-
-  const demoContactPayload = {
-    name: "Demo Learner",
-    email: "demo@eurobridge.com",
-    phone: "+254700000000",
-    message: "Demo submission from the frontend API console."
-  };
-
-  const demoUserPayload = {
-    name: "Demo User",
-    email: "demo.user@eurobridge.com",
-    password: "DemoPass123!"
-  };
-
-  const demoCoursePayload = {
-    title: "Business English Sprint",
-    level: "Intermediate",
-    duration: "6 weeks",
-    price: "KES 18,000",
-    description: "Fast-track speaking, email, and presentation fluency.",
-    imageUrl: ""
-  };
-
-  const demoBlogPayload = {
-    title: "How to Build Language Momentum",
-    slug: `language-momentum-${Date.now()}`,
-    excerpt: "Build daily routines that compound into real fluency gains.",
-    content: "Short daily rituals, feedback loops, and confidence wins matter more than cramming."
-  };
-
-  const fetchCourses = () => api.get("/api/courses").then((response) => response.data);
-  const fetchBlogs = () => api.get("/api/blogs").then((response) => response.data);
-  const createContact = () =>
-    api.post("/api/contact", demoContactPayload).then((response) => response.data);
-  const registerUser = () =>
-    api.post("/api/auth/register", demoUserPayload).then((response) => response.data);
-  const loginUser = () =>
-    api
-      .post("/api/auth/login", {
-        email: demoUserPayload.email,
-        password: demoUserPayload.password
-      })
-      .then((response) => response.data);
-  const logoutUser = () =>
-    api.post("/api/auth/logout").then((response) => response.data);
-
-  const createCourse = () =>
-    api.post("/api/courses", demoCoursePayload, { headers: authHeaders }).then((response) => response.data);
-  const createBlog = () =>
-    api.post("/api/blogs", demoBlogPayload, { headers: authHeaders }).then((response) => response.data);
-
-  const updateFirstCourse = async () => {
-    const courses = await fetchCourses();
-    if (!courses.length) {
-      return { message: "No courses available to update." };
-    }
-    const target = courses[0];
-    const response = await api.put(
-      `/api/courses/${target._id}`,
-      { title: `${target.title} (Updated)` },
-      { headers: authHeaders }
-    );
-    return response.data;
-  };
-
-  const deleteFirstCourse = async () => {
-    const courses = await fetchCourses();
-    if (!courses.length) {
-      return { message: "No courses available to delete." };
-    }
-    const target = courses[0];
-    const response = await api.delete(`/api/courses/${target._id}`, { headers: authHeaders });
-    return response.data;
-  };
-
-  const updateFirstBlog = async () => {
-    const blogs = await fetchBlogs();
-    if (!blogs.length) {
-      return { message: "No blog posts available to update." };
-    }
-    const target = blogs[0];
-    const response = await api.put(
-      `/api/blogs/${target._id}`,
-      { title: `${target.title} (Updated)` },
-      { headers: authHeaders }
-    );
-    return response.data;
-  };
-
-  const deleteFirstBlog = async () => {
-    const blogs = await fetchBlogs();
-    if (!blogs.length) {
-      return { message: "No blog posts available to delete." };
-    }
-    const target = blogs[0];
-    const response = await api.delete(`/api/blogs/${target._id}`, { headers: authHeaders });
-    return response.data;
-  };
+  ];
 
   return (
     <div className="page">
@@ -174,164 +62,103 @@ const Home = () => {
             <span>Kalenjin</span>
           </div>
         </div>
-        <div className="hero-content">
-          <p className="eyebrow">Eurobridge Language Institute</p>
-          <h1>Words that open doors.</h1>
-          <p className="lead">
-            High-touch language coaching for professionals, students, and global
-            teams who need confidence, clarity, and real-world fluency.
-          </p>
-          <div className="actions">
-            <Link to="/courses" className="button primary">
-              Explore Programs
-            </Link>
-            <Link to="/contact" className="button ghost">
-              Book a Consultation
-            </Link>
+        <div className="hero-stats">
+          <div>
+            <strong>98%</strong>
+            <span>Completion rate</span>
           </div>
-          <div className="hero-stats">
-            <div>
-              <strong>98%</strong>
-              <span>Completion rate</span>
-            </div>
-            <div>
-              <strong>6</strong>
-              <span>Core languages</span>
-            </div>
-            <div>
-              <strong>1:1</strong>
-              <span>Coaching focus</span>
-            </div>
+          <div>
+            <strong>6</strong>
+            <span>Core languages</span>
+          </div>
+          <div>
+            <strong>1:1</strong>
+            <span>Coaching focus</span>
           </div>
         </div>
       </section>
 
-      <section className="panel-section api-console" id="api-console">
+      <section className="panel-section">
         <div className="section-header">
-          <h2>Backend action console</h2>
-          <p>
-            Run live requests against the API. Auth buttons use real JWT auth,
-            and CRUD actions are protected by the token.
-          </p>
+          <h2>Announcements &amp; News</h2>
+          <p>Latest updates, partnerships, and program opportunities.</p>
         </div>
-        <div className="api-grid">
-          <div className="api-actions">
-            <div className="api-group">
-              <h3>Auth (demo)</h3>
-              <div className="actions">
-                <button
-                  type="button"
-                  className="button primary"
-                  onClick={() =>
-                    runApiAction("Sign in", loginUser, (result) => setToken(result.token || ""))
-                  }
-                >
-                  Sign in
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() =>
-                    runApiAction("Register", registerUser, (result) => setToken(result.token || ""))
-                  }
-                >
-                  Register
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() =>
-                    runApiAction("Sign out", logoutUser, () => setToken(""))
-                  }
-                >
-                  Sign out
-                </button>
-              </div>
-              <p className="api-note">
-                Token status: {authToken ? "Authenticated" : "Not signed in"}
+        <div className="announcements-grid">
+          <article className="announcement-card">
+            <img
+              className="announcement-media"
+              src="/media/announcement-partnership.jpg"
+              alt="Partnership announcement handshake"
+            />
+            <div className="announcement-meta">
+              <span className="announcement-date">Feb 11, 2026</span>
+              <span className="announcement-tag">Partnership</span>
+            </div>
+            <h3>
+              🤝 PARTNERSHIP ANNOUNCEMENT | EMPOWERING YOUTH THROUGH SKILLS &amp; LANGUAGE 🇰🇪🇨🇳
+            </h3>
+            <p>
+              Strategic partnership to build skills and Chinese language fluency
+              for workplace integration and career growth.
+            </p>
+            <details className="announcement-details">
+              <summary>Read full announcement</summary>
+              <p>
+                We are excited to announce a strategic partnership between Teso
+                North Constituency, Fullcare, and Eurobridge Language Institute
+                aimed at enhancing skills development and creating employment
+                opportunities within local Chinese companies operating in Kenya.
+                This collaboration seeks to equip interested candidates with Basic
+                Chinese Language proficiency (HSK 1) — a key requirement for
+                effective communication and workplace integration in Chinese-led
+                organizations. Opportunities are available for professionals and
+                skilled individuals in areas such as Fashion &amp; Design, Electricians,
+                Plumbers, IT Professionals, Human Resource Personnel, Plant
+                Operators, Technicians, and semi-skilled/unskilled sectors. By
+                combining technical skills with basic Chinese language training,
+                this initiative will increase employability, enhance workplace
+                efficiency, and open doors to sustainable career growth.
+                Registration is ongoing. Together, we build capacity. Together,
+                we create opportunities.
               </p>
-            </div>
-            <div className="api-group">
-              <h3>CRUD actions</h3>
-              <div className="actions">
-                <button
-                  type="button"
-                  className="button primary"
-                  onClick={() => runApiAction("Read courses", fetchCourses)}
-                >
-                  Read courses
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Create course", createCourse)}
-                >
-                  Create course
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Update course", updateFirstCourse)}
-                >
-                  Update course
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Delete course", deleteFirstCourse)}
-                >
-                  Delete course
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Read blogs", fetchBlogs)}
-                >
-                  Read blogs
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Create blog", createBlog)}
-                >
-                  Create blog
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Update blog", updateFirstBlog)}
-                >
-                  Update blog
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Delete blog", deleteFirstBlog)}
-                >
-                  Delete blog
-                </button>
-                <button
-                  type="button"
-                  className="button ghost"
-                  onClick={() => runApiAction("Create contact", createContact)}
-                >
-                  Create contact
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="api-output">
-            <div className="api-output-header">
-              <span>Last action</span>
-              <strong>{apiState.action || "No requests yet"}</strong>
-            </div>
-            {apiState.loading && <Loading label="Running" />}
-            {apiState.error && <ErrorMessage message={apiState.error} />}
-            {apiState.data && (
-              <pre className="code-block">
-                {JSON.stringify(apiState.data, null, 2)}
-              </pre>
-            )}
+            </details>
+          </article>
+        </div>
+      </section>
+
+      <section className="panel-section">
+        <div className="section-header">
+          <h2>What our students &amp; alumni say</h2>
+          <p>Real stories from learners who built fluency with Eurobridge.</p>
+        </div>
+        <div className="testimonial-grid">
+          {testimonials.map((item) => (
+            <article key={item.name} className="testimonial-card">
+              <img className="testimonial-avatar" src={item.image} alt={item.name} />
+              <h3>{item.name}</h3>
+              <span className="testimonial-role">{item.role}</span>
+              <p>{item.quote}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel-section">
+        <div className="section-header">
+          <h2>Courses overview</h2>
+          <p>Sliding highlights from our flagship language tracks.</p>
+        </div>
+        <div className="courses-slider">
+          <div className="slider-track">
+            {[...courses, ...courses].map((course, index) => (
+              <article key={`${course.title}-${index}`} className="course-slide">
+                <img src={course.image} alt={course.title} />
+                <div className="course-overlay">
+                  <h3>{course.title}</h3>
+                  <p>{course.description}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -360,6 +187,35 @@ const Home = () => {
                 simulations led by certified mentors.
               </p>
               <span className="pill">New intake every month</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel-section">
+        <div className="section-header">
+          <h2>How your journey unfolds</h2>
+          <p>
+            A guided roadmap designed to build confidence quickly and sustain
+            progress long after the first session.
+          </p>
+        </div>
+        <div className="card-grid">
+          {[
+            "Diagnostic assessment and placement",
+            "Weekly coaching sprints",
+            "Live speaking labs",
+            "Cultural fluency workshops",
+            "Progress dashboards",
+            "Career-ready practice"
+          ].map((title) => (
+            <article key={title} className="card hover-shift">
+              <h3>{title}</h3>
+              <p>
+                Focused milestones and feedback loops that keep you moving with
+                clarity.
+              </p>
+              <span className="pill">Included</span>
             </article>
           ))}
         </div>
@@ -398,7 +254,7 @@ const Home = () => {
               language journey.
             </p>
           </div>
-          <Link to="/contact" className="button primary">
+          <Link to="/about#contact-us" className="button primary">
             Speak with an Advisor
           </Link>
         </div>

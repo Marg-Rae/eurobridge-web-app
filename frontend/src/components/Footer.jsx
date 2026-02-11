@@ -15,10 +15,10 @@ const Footer = () => {
       </div>
       <div className="footer-links">
         <span className="footer-title">Programs</span>
-        <a href="/courses">Business English & IELTS</a>
-        <a href="/courses">German Foundations</a>
-        <a href="/courses">French for Professionals</a>
-        <a href="/courses">Swahili & Kalenjin</a>
+        <a href="/elearning">Business English & IELTS</a>
+        <a href="/elearning">German Foundations</a>
+        <a href="/elearning">French for Professionals</a>
+        <a href="/elearning">Swahili & Kalenjin</a>
       </div>
       <div className="footer-contact">
         <span className="footer-title">Visit us</span>
@@ -36,7 +36,7 @@ const Footer = () => {
           Get cohort dates, events, and language tips straight to your inbox.
         </p>
         <div className="footer-cta">
-          <a className="button ghost" href="/contact">
+          <a className="button ghost" href="/about#contact-us">
             Join the newsletter
           </a>
         </div>

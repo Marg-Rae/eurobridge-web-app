@@ -40,6 +40,33 @@ const About = () => {
         </article>
       </div>
 
+      <section className="panel-section">
+        <div className="section-header">
+          <h2>Vision, mission, values</h2>
+          <p>The principles guiding every learner experience at Eurobridge.</p>
+        </div>
+        <div className="mission-grid">
+          <article className="mission-card">
+            <h3>Vision</h3>
+            <p>To build confident global communicators who lead with language and culture.</p>
+          </article>
+          <article className="mission-card">
+            <h3>Mission</h3>
+            <p>
+              Deliver measurable language mastery through personalized coaching,
+              practical immersion, and continuous progress tracking.
+            </p>
+          </article>
+          <article className="mission-card">
+            <h3>Values</h3>
+            <p>
+              Empathy, accountability, and excellence in every class, with
+              community-driven support.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <div className="color-band">
         <div>
           <h2>How we teach</h2>
@@ -63,6 +90,61 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <section className="panel-section">
+        <div className="section-header">
+          <h2>Meet our team</h2>
+          <p>Dedicated mentors and leaders guiding every learning journey.</p>
+        </div>
+        <div className="team-grid">
+          {[
+            {
+              name: "Dr. Esther K.",
+              role: "Director",
+              image: "/media/director.jpg"
+            },
+            {
+              name: "David M.",
+              role: "Lead Tutor",
+              image: "/media/lead-tutor.jpg"
+            },
+            {
+              name: "Joyce A.",
+              role: "Student Success Tutor",
+              image: "/media/student-success-tutor.jpg"
+            }
+          ].map((member) => (
+            <article key={member.name} className="team-card">
+              <img src={member.image} alt={member.name} />
+              <div>
+                <h3>{member.name}</h3>
+                <span>{member.role}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel-section" id="contact-us">
+        <div className="section-header">
+          <h2>Contact us</h2>
+          <p>Talk to admissions or schedule a placement assessment.</p>
+        </div>
+        <div className="contact-panel">
+          <div>
+            <p>Email: info@eurobridgelanguageinstitute.com</p>
+            <p>Phone/WhatsApp: +254722108799</p>
+            <p>
+              Location: Second Floor, Champion Heights Building, Behind Comfy
+              Hotel, Eldoret (K)
+            </p>
+            <p>Hours: Mon-Sat 8:00am - 7:00pm</p>
+          </div>
+          <a className="button primary" href="mailto:info@eurobridgelanguageinstitute.com">
+            Email admissions
+          </a>
+        </div>
+      </section>
     </section>
   );
 };

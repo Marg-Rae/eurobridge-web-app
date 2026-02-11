@@ -1,17 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
 import api from "../api/axios.js";
-import Loading from "./Loading.jsx";
-import ErrorMessage from "./ErrorMessage.jsx";
+import Loading from "../components/Loading.jsx";
+import ErrorMessage from "../components/ErrorMessage.jsx";
 
-const Navbar = () => {
+const StudentPortal = () => {
   const [authToken, setAuthToken] = useState(() => localStorage.getItem("authToken") || "");
   const [authMode, setAuthMode] = useState("signin");
-  const [authOpen, setAuthOpen] = useState(false);
   const [authForm, setAuthForm] = useState({ name: "", email: "", password: "" });
   const [authStatus, setAuthStatus] = useState({ loading: false, error: "", success: "" });
-  const [isHidden, setIsHidden] = useState(false);
-  const lastScrollY = useRef(0);
 
   const setToken = (token) => {
     setAuthToken(token);
@@ -25,12 +21,6 @@ const Navbar = () => {
   const handleAuthChange = (event) => {
     const { name, value } = event.target;
     setAuthForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const openPortal = (mode) => {
-    setAuthMode(mode);
-    setAuthStatus({ loading: false, error: "", success: "" });
-    setAuthOpen(true);
   };
 
   const handleAuthSubmit = async (event) => {
@@ -61,62 +51,14 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      const isScrollingDown = currentY > lastScrollY.current;
-      const shouldHide = isScrollingDown && currentY > 140;
-
-      setIsHidden(shouldHide);
-      lastScrollY.current = currentY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <header className={isHidden ? "site-header is-hidden" : "site-header"}>
-      <div className="header-top">
-        <button type="button" className="portal-button" onClick={() => openPortal("signin")}
-        >
-          Staff Portal
-        </button>
-        <NavLink to="/portal" className="portal-button ghost">
-          Student Portal
-        </NavLink>
+    <section className="page">
+      <div className="section-header">
+        <h1>Student Portal</h1>
+        <p>Register, sign in, and manage your learning plan.</p>
       </div>
-      <div className="header-bottom">
-        <div className="brand-wrap">
-          <img
-            className="brand-logo"
-            src="/assets/logo.jpg"
-            alt="Eurobridge Language Institute"
-          />
-          <div>
-            <div className="brand-name">Eurobridge Language Institute</div>
-            <div className="brand-tagline">Words that open doors</div>
-          </div>
-        </div>
-        <nav className="nav-links">
-          <NavLink to="/" end>
-            Home
-          </NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/academics">Academics</NavLink>
-          <NavLink to="/elearning">eLearning</NavLink>
-        </nav>
-      </div>
-      <div className={authOpen ? "auth-modal open" : "auth-modal"}>
-        <div className="auth-modal-panel">
-          <button
-            type="button"
-            className="auth-close"
-            onClick={() => setAuthOpen(false)}
-            aria-label="Close portal"
-          >
-            Close
-          </button>
+      <section className="panel-section portal-page">
+        <div className="portal-card">
           <div className="auth-tabs">
             <button
               type="button"
@@ -184,9 +126,22 @@ const Navbar = () => {
             </div>
           )}
         </div>
-      </div>
-    </header>
+        <div className="portal-info">
+          <h3>Need help getting started?</h3>
+          <p>
+            Create a student account to unlock application tracking, placement
+            updates, and cohort scheduling. Our team will reach out within 48
+            hours after you submit your details.
+          </p>
+          <ul>
+            <li>Track your application status</li>
+            <li>Get placement results and study plans</li>
+            <li>Access course materials and schedules</li>
+          </ul>
+        </div>
+      </section>
+    </section>
   );
 };
 
-export default Navbar;
+export default StudentPortal;
