@@ -3,9 +3,9 @@ services:
     name: eurobridge-api
     env: node
     plan: free
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
-    rootDir: backend
     envVars:
       - key: NODE_ENV
         value: production

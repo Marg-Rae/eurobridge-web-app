@@ -8,14 +8,38 @@ const Footer = () => {
           Advanced language coaching for English, German, Chinese, French,
           Swahili, and Kalenjin learners.
         </p>
+        <p className="footer-copy">
+          Private coaching, corporate training, and test prep built around your
+          professional milestones.
+        </p>
+      </div>
+      <div className="footer-links">
+        <span className="footer-title">Programs</span>
+        <a href="/courses">Business English & IELTS</a>
+        <a href="/courses">German Foundations</a>
+        <a href="/courses">French for Professionals</a>
+        <a href="/courses">Swahili & Kalenjin</a>
       </div>
       <div className="footer-contact">
+        <span className="footer-title">Visit us</span>
         <p>Email: info@eurobridgelanguageinstitute.com</p>
         <p>Phone/WhatsApp: +254722108799</p>
         <p>
           Location: Second Floor, Champion Heights Building, Behind Comfy Hotel,
           Eldoret(K)
         </p>
+        <p>Hours: Mon-Sat 8:00am - 7:00pm</p>
+      </div>
+      <div className="footer-updates">
+        <span className="footer-title">Updates</span>
+        <p className="footer-copy">
+          Get cohort dates, events, and language tips straight to your inbox.
+        </p>
+        <div className="footer-cta">
+          <a className="button ghost" href="/contact">
+            Join the newsletter
+          </a>
+        </div>
       </div>
       <div className="footer-social">
         <span>Follow us</span>
