@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { LanguageProvider } from "./contexts/LanguageContext.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
@@ -9,19 +10,21 @@ import StudentPortal from "./pages/StudentPortal.jsx";
 
 const App = () => {
   return (
-    <div className="app-shell">
-      <Navbar />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/academics" element={<Academics />} />
-          <Route path="/elearning" element={<Elearning />} />
-          <Route path="/portal" element={<StudentPortal />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <LanguageProvider>
+      <div className="app-shell">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/academics" element={<Academics />} />
+            <Route path="/elearning" element={<Elearning />} />
+            <Route path="/portal" element={<StudentPortal />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </LanguageProvider>
   );
 };
 

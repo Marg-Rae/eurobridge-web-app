@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext.jsx";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import api from "../api/axios.js";
 import Loading from "./Loading.jsx";
 import ErrorMessage from "./ErrorMessage.jsx";
 
 const Navbar = () => {
+  const { t } = useLanguage();
   const [authToken, setAuthToken] = useState(() => localStorage.getItem("authToken") || "");
   const [authMode, setAuthMode] = useState("signin");
   const [authOpen, setAuthOpen] = useState(false);
@@ -44,9 +47,21 @@ const Navbar = () => {
       const endpoint = authMode === "register" ? "/api/auth/register" : "/api/auth/login";
       const response = await api.post(endpoint, payload);
       setToken(response.data.token || "");
-      setAuthStatus({ loading: false, error: "", success: "Signed in successfully." });
+
+      const successMessage = authMode === "register"
+        ? t("auth.successRegister")
+        : t("auth.successSignIn");
+
+      setAuthStatus({ loading: false, error: "", success: successMessage });
+
+      if (authMode === "register") {
+        setAuthForm({ name: "", email: "", password: "" });
+      }
     } catch (error) {
-      setAuthStatus({ loading: false, error: "Unable to sign in right now.", success: "" });
+      const errorMessage = authMode === "register"
+        ? error.response?.data?.message || "Registration failed. Please try again."
+        : error.response?.data?.message || "Sign in failed. Please check your credentials.";
+      setAuthStatus({ loading: false, error: errorMessage, success: "" });
     }
   };
 
@@ -55,7 +70,7 @@ const Navbar = () => {
     try {
       await api.post("/api/auth/logout");
       setToken("");
-      setAuthStatus({ loading: false, error: "", success: "Signed out." });
+      setAuthStatus({ loading: false, error: "", success: t("auth.successSignOut") });
     } catch (error) {
       setAuthStatus({ loading: false, error: "Unable to sign out right now.", success: "" });
     }
@@ -78,12 +93,13 @@ const Navbar = () => {
   return (
     <header className={isHidden ? "site-header is-hidden" : "site-header"}>
       <div className="header-top">
+        <LanguageSwitcher />
         <button type="button" className="portal-button" onClick={() => openPortal("signin")}
         >
-          Staff Portal
+          {t("nav.staffPortal")}
         </button>
         <NavLink to="/portal" className="portal-button ghost">
-          Student Portal
+          {t("nav.studentPortal")}
         </NavLink>
       </div>
       <div className="header-bottom">
@@ -100,11 +116,11 @@ const Navbar = () => {
         </div>
         <nav className="nav-links">
           <NavLink to="/" end>
-            Home
+            {t("nav.home")}
           </NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/academics">Academics</NavLink>
-          <NavLink to="/elearning">eLearning</NavLink>
+          <NavLink to="/about">{t("nav.about")}</NavLink>
+          <NavLink to="/academics">{t("nav.academics")}</NavLink>
+          <NavLink to="/elearning">{t("nav.elearning")}</NavLink>
         </nav>
       </div>
       <div className={authOpen ? "auth-modal open" : "auth-modal"}>
@@ -115,7 +131,7 @@ const Navbar = () => {
             onClick={() => setAuthOpen(false)}
             aria-label="Close portal"
           >
-            Close
+            {t("auth.close")}
           </button>
           <div className="auth-tabs">
             <button
@@ -123,20 +139,20 @@ const Navbar = () => {
               className={authMode === "signin" ? "tab active" : "tab"}
               onClick={() => setAuthMode("signin")}
             >
-              Sign in
+              {t("auth.signIn")}
             </button>
             <button
               type="button"
               className={authMode === "register" ? "tab active" : "tab"}
               onClick={() => setAuthMode("register")}
             >
-              Register
+              {t("auth.register")}
             </button>
           </div>
           <form className="auth-form" onSubmit={handleAuthSubmit}>
             {authMode === "register" && (
               <label>
-                Full name
+                {t("auth.fullName")}
                 <input
                   type="text"
                   name="name"
@@ -147,7 +163,7 @@ const Navbar = () => {
               </label>
             )}
             <label>
-              Email
+              {t("auth.email")}
               <input
                 type="email"
                 name="email"
@@ -157,7 +173,7 @@ const Navbar = () => {
               />
             </label>
             <label>
-              Password
+              {t("auth.password")}
               <input
                 type="password"
                 name="password"
@@ -168,7 +184,7 @@ const Navbar = () => {
             </label>
             <button className="button primary" type="submit" disabled={authStatus.loading}
             >
-              {authMode === "register" ? "Create account" : "Sign in"}
+              {authMode === "register" ? t("auth.createAccount") : t("auth.signIn")}
             </button>
           </form>
           {authStatus.loading && <Loading label="Submitting" />}
@@ -176,10 +192,10 @@ const Navbar = () => {
           {authStatus.success && <div className="status success">{authStatus.success}</div>}
           {authToken && (
             <div className="portal-footer">
-              <span className="status success">Session active.</span>
+              <span className="status success">{t("auth.sessionActive")}</span>
               <button type="button" className="button ghost" onClick={handleSignOut}
               >
-                Sign out
+                {t("auth.signOut")}
               </button>
             </div>
           )}

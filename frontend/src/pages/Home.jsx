@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Home = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const testimonials = [
     {
       name: "Lynn K.",
@@ -21,6 +24,21 @@ const Home = () => {
       image: "/media/student-aisha-m.jpg"
     }
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
 
   const courses = [
     {
@@ -78,31 +96,34 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="panel-section">
+      <section className="panel-section flashy-announcement-section">
         <div className="section-header">
-          <h2>Announcements &amp; News</h2>
+          <h2 className="flashy-title">
+            <span className="announcement-badge">HOT</span> Announcements &amp; News
+          </h2>
           <p>Latest updates, partnerships, and program opportunities.</p>
         </div>
-        <div className="announcements-grid">
-          <article className="announcement-card">
+        <div className="announcements-grid flashy-grid">
+          <article className="announcement-card flashy-card">
+            <div className="flashy-border-animation"></div>
             <img
               className="announcement-media"
               src="/media/announcement-partnership.jpg"
               alt="Partnership announcement handshake"
             />
             <div className="announcement-meta">
-              <span className="announcement-date">Feb 11, 2026</span>
-              <span className="announcement-tag">Partnership</span>
+              <span className="announcement-date pulse-animation">Feb 11, 2026</span>
+              <span className="announcement-tag glow-effect">Partnership</span>
             </div>
-            <h3>
+            <h3 className="announcement-title-flashy">
               🤝 PARTNERSHIP ANNOUNCEMENT | EMPOWERING YOUTH THROUGH SKILLS &amp; LANGUAGE 🇰🇪🇨🇳
             </h3>
-            <p>
+            <p className="announcement-highlight">
               Strategic partnership to build skills and Chinese language fluency
               for workplace integration and career growth.
             </p>
             <details className="announcement-details">
-              <summary>Read full announcement</summary>
+              <summary className="flashy-summary">📖 Read full announcement</summary>
               <p>
                 We are excited to announce a strategic partnership between Teso
                 North Constituency, Fullcare, and Eurobridge Language Institute
@@ -131,15 +152,83 @@ const Home = () => {
           <h2>What our students &amp; alumni say</h2>
           <p>Real stories from learners who built fluency with Eurobridge.</p>
         </div>
-        <div className="testimonial-grid">
-          {testimonials.map((item) => (
-            <article key={item.name} className="testimonial-card">
-              <img className="testimonial-avatar" src={item.image} alt={item.name} />
-              <h3>{item.name}</h3>
-              <span className="testimonial-role">{item.role}</span>
-              <p>{item.quote}</p>
-            </article>
-          ))}
+        <div className="testimonial-carousel">
+          <button
+            className="carousel-nav prev"
+            onClick={prevTestimonial}
+            aria-label="Previous testimonial"
+          >
+            ‹
+          </button>
+          <div className="testimonial-slides">
+            {testimonials.map((item, index) => (
+              <article
+                key={item.name}
+                className={`testimonial-card ${index === currentTestimonial ? 'active' : ''}`}
+                style={{
+                  transform: `translateX(${(index - currentTestimonial) * 100}%)`,
+                  opacity: index === currentTestimonial ? 1 : 0,
+                  transition: 'all 0.5s ease-in-out'
+                }}
+              >
+                <img className="testimonial-avatar" src={item.image} alt={item.name} />
+                <h3>{item.name}</h3>
+                <span className="testimonial-role">{item.role}</span>
+                <p>{item.quote}</p>
+              </article>
+            ))}
+          </div>
+          <button
+            className="carousel-nav next"
+            onClick={nextTestimonial}
+            aria-label="Next testimonial"
+          >
+            ›
+          </button>
+          <div className="carousel-dots">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${index === currentTestimonial ? 'active' : ''}`}
+                onClick={() => setCurrentTestimonial(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="panel-section lead-magnet-section">
+        <div className="section-header">
+          <h2>Start Your Language Journey Today</h2>
+          <p>Get exclusive resources and offers to kickstart your learning</p>
+        </div>
+        <div className="lead-magnet-grid">
+          <div className="lead-magnet-card">
+            <div className="magnet-icon">📚</div>
+            <h3>Free Language Guide</h3>
+            <p>Download our comprehensive beginner's guide to learning German or Chinese. Includes essential phrases, cultural tips, and study strategies.</p>
+            <Link to="/about#contact-us" className="button primary">
+              Download Free Guide
+            </Link>
+          </div>
+          <div className="lead-magnet-card highlighted">
+            <div className="magnet-badge">POPULAR</div>
+            <div className="magnet-icon">🎯</div>
+            <h3>Free Trial Class</h3>
+            <p>Experience our teaching method firsthand. Join a 60-minute trial class in German, Chinese, or English with no commitment required.</p>
+            <Link to="/about#contact-us" className="button secondary">
+              Book Your Free Trial
+            </Link>
+          </div>
+          <div className="lead-magnet-card">
+            <div className="magnet-icon">📊</div>
+            <h3>Free Language Assessment</h3>
+            <p>Not sure which level to start at? Take our professional language assessment test and get personalized course recommendations.</p>
+            <Link to="/about#contact-us" className="button primary">
+              Take Assessment
+            </Link>
+          </div>
         </div>
       </section>
 
