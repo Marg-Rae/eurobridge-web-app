@@ -34,9 +34,18 @@ const StudentPortal = () => {
       const endpoint = authMode === "register" ? "/api/auth/register" : "/api/auth/login";
       const response = await api.post(endpoint, payload);
       setToken(response.data.token || "");
-      setAuthStatus({ loading: false, error: "", success: "Signed in successfully." });
+      const successMessage = authMode === "register"
+        ? "Account created successfully! Welcome to Eurobridge."
+        : "Signed in successfully.";
+      setAuthStatus({ loading: false, error: "", success: successMessage });
+      if (authMode === "register") {
+        setAuthForm({ name: "", email: "", password: "" });
+      }
     } catch (error) {
-      setAuthStatus({ loading: false, error: "Unable to sign in right now.", success: "" });
+      const errorMessage = authMode === "register"
+        ? error.response?.data?.message || "Unable to register. Please try again."
+        : error.response?.data?.message || "Unable to sign in. Please check your credentials.";
+      setAuthStatus({ loading: false, error: errorMessage, success: "" });
     }
   };
 

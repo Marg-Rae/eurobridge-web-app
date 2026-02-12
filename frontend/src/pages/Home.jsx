@@ -65,10 +65,13 @@ const Home = () => {
           <video
             className="hero-video"
             src="/media/hero.mp4"
+            poster="/media/hero-poster.jpg"
             autoPlay
             loop
             muted
             playsInline
+            preload="metadata"
+            loading="lazy"
           />
           <div className="hero-overlay" />
           <div className="hero-keywords">
