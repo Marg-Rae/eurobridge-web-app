@@ -4,7 +4,7 @@ import User from "../models/User.js";
 
 const signToken = (user) =>
   jwt.sign(
-    { email: user.email },
+    { email: user.email, role: user.role },
     process.env.JWT_SECRET,
     { subject: user._id.toString(), expiresIn: "7d" }
   );
