@@ -70,8 +70,7 @@ const Home = () => {
             loop
             muted
             playsInline
-            preload="metadata"
-            loading="lazy"
+            preload="auto"
           />
           <div className="hero-overlay" />
           <div className="hero-keywords">
@@ -265,19 +264,34 @@ const Home = () => {
         </div>
         <div className="card-grid">
           {[
-            "Business English & IELTS",
-            "German A1-A2 Foundations",
-            "French for Professionals",
-            "Conversational Swahili",
-            "Chinese for Global Trade",
-            "Kalenjin Cultural Fluency"
-          ].map((title) => (
-            <article key={title} className="card hover-shift">
-              <h3>{title}</h3>
-              <p>
-                Tailored curriculum, weekly assessments, and real-life
-                simulations led by certified mentors.
-              </p>
+            {
+              title: "Business English & IELTS",
+              description: "Interview practice, workplace writing drills, and fluency coaching tied to your goals."
+            },
+            {
+              title: "German A1-A2 Foundations",
+              description: "Fast-start grammar bootcamps, speaking labs, and Goethe-style exam prep."
+            },
+            {
+              title: "French for Professionals",
+              description: "Client-ready vocabulary, meeting simulations, and cultural etiquette mastery."
+            },
+            {
+              title: "Conversational Swahili",
+              description: "Community immersion, everyday role-play, and confident pronunciation coaching."
+            },
+            {
+              title: "Chinese for Global Trade",
+              description: "Business negotiation scenarios, tone accuracy training, and trade vocabulary drills."
+            },
+            {
+              title: "Kalenjin Cultural Fluency",
+              description: "Heritage storytelling, listening comprehension, and community engagement sessions."
+            }
+          ].map((track) => (
+            <article key={track.title} className="card hover-shift">
+              <h3>{track.title}</h3>
+              <p>{track.description}</p>
               <span className="pill">New intake every month</span>
             </article>
           ))}
@@ -294,19 +308,34 @@ const Home = () => {
         </div>
         <div className="card-grid">
           {[
-            "Diagnostic assessment and placement",
-            "Weekly coaching sprints",
-            "Live speaking labs",
-            "Cultural fluency workshops",
-            "Progress dashboards",
-            "Career-ready practice"
-          ].map((title) => (
-            <article key={title} className="card hover-shift">
-              <h3>{title}</h3>
-              <p>
-                Focused milestones and feedback loops that keep you moving with
-                clarity.
-              </p>
+            {
+              title: "Diagnostic assessment and placement",
+              description: "We map your baseline, set targets, and place you in the right cohort from day one."
+            },
+            {
+              title: "Weekly coaching sprints",
+              description: "Short, focused goals with coach check-ins to keep momentum high."
+            },
+            {
+              title: "Live speaking labs",
+              description: "Real-time practice with guided corrections to build confident delivery."
+            },
+            {
+              title: "Cultural fluency workshops",
+              description: "Context, etiquette, and social nuance so your language feels natural."
+            },
+            {
+              title: "Progress dashboards",
+              description: "Transparent tracking so you can see growth in every skill area."
+            },
+            {
+              title: "Career-ready practice",
+              description: "Role-play interviews, presentations, and workplace conversations."
+            }
+          ].map((step) => (
+            <article key={step.title} className="card hover-shift">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
               <span className="pill">Included</span>
             </article>
           ))}

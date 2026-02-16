@@ -94,13 +94,20 @@ const Navbar = () => {
     <header className={isHidden ? "site-header is-hidden" : "site-header"}>
       <div className="header-top">
         <LanguageSwitcher />
-        <button type="button" className="portal-button" onClick={() => openPortal("signin")}
+        <button
+          type="button"
+          className="portal-button"
+          onClick={() => openPortal("signin")}
         >
-          {t("nav.staffPortal")}
+          Staff Portal
         </button>
-        <NavLink to="/portal" className="portal-button ghost">
-          {t("nav.studentPortal")}
-        </NavLink>
+        <button
+          type="button"
+          className="portal-button ghost"
+          onClick={() => openPortal("signin")}
+        >
+          Student Posrtal
+        </button>
       </div>
       <div className="header-bottom">
         <div className="brand-wrap">

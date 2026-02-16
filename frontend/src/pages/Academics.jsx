@@ -2,8 +2,16 @@ const Academics = () => {
   return (
     <section className="page">
       <div className="academics-hero">
-        <h1>Academic Programs</h1>
-        <p>Explore our comprehensive language courses designed for all proficiency levels</p>
+        <div>
+          <h1>Academic Programs</h1>
+          <p>Explore our comprehensive language courses designed for all proficiency levels</p>
+        </div>
+        <div className="academics-hero-media">
+          <img
+            src="/media/academics-hero.jpg"
+            alt="Eurobridge classroom learning session"
+          />
+        </div>
       </div>
 
       <div className="content-wrapper">

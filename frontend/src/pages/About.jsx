@@ -2,14 +2,17 @@ const About = () => {
   return (
     <section className="page">
       <div className="about-hero">
-        <div>
-          <p className="eyebrow">About Eurobridge</p>
-          <h1>Language mastery with culture, clarity, and confidence.</h1>
-          <p className="lead">
-            Based in Eldoret, we deliver high-touch coaching in English, German,
-            Chinese, French, Swahili, and Kalenjin for learners who need real
-            results for work, study, and global connection.
-          </p>
+        <div className="about-hero-media">
+          <img src="/media/about-hero.jpg" alt="Eurobridge learners in class" />
+          <div className="about-hero-overlay">
+            <p className="eyebrow">About Eurobridge</p>
+            <h1>Language mastery with culture, clarity, and confidence.</h1>
+            <p className="lead">
+              Based in Eldoret, we deliver high-touch coaching in English,
+              German, Chinese, French, Swahili, and Kalenjin for learners who
+              need real results for work, study, and global connection.
+            </p>
+          </div>
         </div>
         <div className="about-hero-card">
           <h3>Our Promise</h3>
