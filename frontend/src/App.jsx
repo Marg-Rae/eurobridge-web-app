@@ -6,7 +6,7 @@ import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Academics from "./pages/Academics.jsx";
 import Elearning from "./pages/Elearning.jsx";
-import StudentPortal from "./pages/StudentPortal.jsx";
+import Portal from "./pages/Portal.jsx";
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
             <Route path="/elearning" element={<Elearning />} />
-            <Route path="/portal" element={<StudentPortal />} />
+            <Route path="/auth" element={<Portal />} />
           </Routes>
         </main>
         <Footer />
