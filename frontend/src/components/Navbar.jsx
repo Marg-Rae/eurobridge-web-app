@@ -64,7 +64,7 @@ const Navbar = () => {
       <div className="header-bottom">
         <div className="brand-wrap">
           <img
-            className="brand-logo"
+            className="brand-logo brand-logo-large"
             src="/assets/logo.jpg"
             alt="Eurobridge Language Institute"
           />
