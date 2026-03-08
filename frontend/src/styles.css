@@ -86,12 +86,6 @@ main {
   box-shadow: 0 10px 20px var(--shadow);
 }
 
-.brand-logo-large {
-  width: 90px;
-  height: 90px;
-}
-}
-
 .brand-name {
   font-family: "Playfair Display", serif;
   font-size: 1.4rem;
@@ -431,8 +425,8 @@ main {
   position: relative;
   border-radius: 2rem;
   overflow: hidden;
-  min-height: 400px;
-  height: clamp(380px, 55vw, 520px);
+  min-height: 320px;
+  height: clamp(280px, 42vw, 380px);
   box-shadow: 0 24px 48px var(--shadow-strong);
 }
 
@@ -549,22 +543,6 @@ main {
 }
 
 .button {
-  }
-  .cta-register {
-    background: var(--accent);
-    color: #fff;
-    font-weight: 700;
-    border-radius: 999px;
-    padding: 0.8rem 2rem;
-    margin: 0.5rem;
-    box-shadow: 0 8px 18px var(--shadow-strong);
-    font-size: 1.1rem;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .cta-register:hover {
-    background: var(--accent-dark);
-    transform: translateY(-2px) scale(1.04);
-  }
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -683,7 +661,6 @@ main {
   object-fit: cover;
   margin: 0 auto;
   box-shadow: 0 12px 24px var(--shadow);
-  display: block;
 }
 
 .testimonial-role {
@@ -714,7 +691,6 @@ main {
   object-fit: cover;
   border-radius: 1.1rem;
   box-shadow: 0 14px 26px rgba(15, 23, 42, 0.12);
-  display: block;
 }
 
 .announcement-meta {
@@ -884,46 +860,6 @@ textarea {
   padding: 2.4rem;
   border-radius: 1.8rem;
   box-shadow: 0 20px 40px var(--shadow);
-}
-
-.partnerships-section {
-  background: #f4f8ff;
-  padding: 2.5rem 0;
-}
-
-.partnerships-grid {
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-
-.partnership-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 8px 18px var(--shadow);
-  padding: 2rem 2.5rem;
-  min-width: 220px;
-}
-
-.partnership-logo {
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.partnership-name {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--brand-blue-dark);
-  margin-top: 0.5rem;
 }
 
 .dark-panel {

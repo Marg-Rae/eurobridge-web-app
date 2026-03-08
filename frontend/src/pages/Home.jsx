@@ -6,22 +6,22 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Wallace K.",
-      role: "Student",
-      quote: "Eurobridge helped me achieve my language goals.",
-      image: "/media/student-aisha-m.jpg"
-    },
-    {
-      name: "S. Muthoni",
-      role: "Alumni",
-      quote: "The support and resources were amazing!",
+      name: "Lynn K.",
+      role: "Business English graduate",
+      quote: "My client calls are smoother and I finally speak without second-guessing.",
       image: "/media/student-lynn-k.jpg"
     },
     {
-      name: "Bill K.",
-      role: "Student",
-      quote: "I recommend Eurobridge to anyone serious about learning.",
+      name: "Samuel O.",
+      role: "German A2 learner",
+      quote: "The coaching labs gave me the confidence to pass my Goethe exam.",
       image: "/media/student-samuel-o.jpg"
+    },
+    {
+      name: "Aisha M.",
+      role: "IELTS achiever",
+      quote: "Weekly feedback kept me focused, and I hit my target score in one cycle.",
+      image: "/media/student-aisha-m.jpg"
     }
   ];
 
@@ -61,54 +61,44 @@ const Home = () => {
   return (
     <div className="page">
       <section className="hero-banner">
-                <div style={{position: 'absolute', top: '2rem', right: '2rem', zIndex: 2}}>
-                  <Link to="/register" className="button cta-register">Register Now</Link>
-                </div>
-        <div className="hero-flex">
-          <div className="hero-media" style={{width: '66%', display: 'inline-block'}}>
-            <video
-              className="hero-video"
-              src="/media/hero.mp4"
-              poster="/media/hero-poster.jpg"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              style={{width: '100%', height: 'auto', borderRadius: '1.2rem'}}
-            />
+        <div className="hero-media">
+          <video
+            className="hero-video"
+            src="/media/hero.mp4"
+            poster="/media/hero-poster.jpg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+          <div className="hero-overlay" />
+          <div className="hero-keywords">
+            <span>English</span>
+            <span>German</span>
+            <span>Chinese</span>
+            <span>French</span>
+            <span>Swahili</span>
+            <span>Kalenjin</span>
           </div>
-          <div className="hero-text" style={{width: '34%', display: 'inline-block', verticalAlign: 'top', padding: '2rem'}}>
-            <div className="hero-keywords">
-              <span>English</span>
-              <span>German</span>
-              <span>Chinese</span>
-              <span>French</span>
-              <span>Swahili</span>
-              <span>Kalenjin</span>
-            </div>
-            <div className="hero-stats">
-              <div>
-                <strong>98%</strong>
-                <span>Completion rate</span>
-              </div>
-              <div>
-                <strong>6</strong>
-                <span>Core languages</span>
-              </div>
-              <div>
-                <strong>1:1</strong>
-                <span>Coaching focus</span>
-              </div>
-            </div>
+        </div>
+        <div className="hero-stats">
+          <div>
+            <strong>98%</strong>
+            <span>Completion rate</span>
+          </div>
+          <div>
+            <strong>6</strong>
+            <span>Core languages</span>
+          </div>
+          <div>
+            <strong>1:1</strong>
+            <span>Coaching focus</span>
           </div>
         </div>
       </section>
 
       <section className="panel-section flashy-announcement-section">
-                <div style={{marginBottom: '1rem', textAlign: 'center'}}>
-                  <Link to="/register" className="button cta-register">Register for Updates</Link>
-                </div>
         <div className="section-header">
           <h2 className="flashy-title">
             <span className="announcement-badge">HOT</span> Announcements &amp; News
@@ -121,7 +111,7 @@ const Home = () => {
             <img
               className="announcement-media"
               src="/media/announcement-partnership.jpg"
-              alt="Partnership announcement"
+              alt="Partnership announcement handshake"
             />
             <div className="announcement-meta">
               <span className="announcement-date pulse-animation">Feb 11, 2026</span>
@@ -160,22 +150,6 @@ const Home = () => {
       </section>
 
       <section className="panel-section">
-              <section className="panel-section partnerships-section">
-                <div className="section-header">
-                  <h2>Our Partnerships</h2>
-                  <p>We collaborate with leading organizations to empower learners and communities.</p>
-                </div>
-                <div className="partnerships-grid">
-                  <div className="partnership-card">
-                    <img src="/media/director.jpg" alt="Fullcare Surgical Ltd Logo" className="partnership-logo" />
-                    <div className="partnership-name">Fullcare Surgical Ltd</div>
-                  </div>
-                  <div className="partnership-card">
-                    <img src="/media/lead-tutor.jpg" alt="Goethe Institut Logo" className="partnership-logo" />
-                    <div className="partnership-name">Goethe Institut</div>
-                  </div>
-                </div>
-              </section>
         <div className="section-header">
           <h2>What our students &amp; alumni say</h2>
           <p>Real stories from learners who built fluency with Eurobridge.</p>
@@ -227,15 +201,6 @@ const Home = () => {
       </section>
 
       <section className="panel-section lead-magnet-section">
-                <div style={{marginBottom: '1rem', textAlign: 'center'}}>
-                  <Link to="/register" className="button cta-register">Register for Free Trial</Link>
-                </div>
-                <div style={{marginBottom: '1rem', textAlign: 'center'}}>
-                  <Link to="/register" className="button cta-register">Register for Courses</Link>
-                </div>
-                <div style={{marginBottom: '1rem', textAlign: 'center'}}>
-                  <Link to="/register" className="button cta-register">Register for Language Tracks</Link>
-                </div>
         <div className="section-header">
           <h2>Start Your Language Journey Today</h2>
           <p>Get exclusive resources and offers to kickstart your learning</p>
