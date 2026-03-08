@@ -8,7 +8,7 @@ const Academics = () => {
         </div>
         <div className="academics-hero-media">
           <img
-            src="/media/academics-hero.jpg"
+            src="/media/academics-hero-new.jpg"
             alt="Eurobridge classroom learning session"
           />
         </div>

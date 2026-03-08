@@ -9,19 +9,19 @@ const Home = () => {
       name: "Wallace K.",
       role: "Student",
       quote: "Eurobridge helped me achieve my language goals.",
-      image: "/media/wallace-k.jpeg"
+      image: "/media/student-aisha-m.jpg"
     },
     {
       name: "S. Muthoni",
       role: "Alumni",
       quote: "The support and resources were amazing!",
-      image: "/media/s-muthoni.jpeg"
+      image: "/media/student-lynn-k.jpg"
     },
     {
       name: "Bill K.",
       role: "Student",
       quote: "I recommend Eurobridge to anyone serious about learning.",
-      image: "/media/bill-k.jpeg"
+      image: "/media/student-samuel-o.jpg"
     }
   ];
 
@@ -120,7 +120,7 @@ const Home = () => {
             <div className="flashy-border-animation"></div>
             <img
               className="announcement-media"
-              src="/media/partnership-announcement.png"
+              src="/media/announcement-partnership.jpg"
               alt="Partnership announcement"
             />
             <div className="announcement-meta">
@@ -167,11 +167,11 @@ const Home = () => {
                 </div>
                 <div className="partnerships-grid">
                   <div className="partnership-card">
-                    <img src="/media/fullcare-logo.jpeg" alt="Fullcare Surgical Ltd Logo" className="partnership-logo" />
+                    <img src="/media/director.jpg" alt="Fullcare Surgical Ltd Logo" className="partnership-logo" />
                     <div className="partnership-name">Fullcare Surgical Ltd</div>
                   </div>
                   <div className="partnership-card">
-                    <img src="/media/goethe-logo.jpeg" alt="Goethe Institut Logo" className="partnership-logo" />
+                    <img src="/media/lead-tutor.jpg" alt="Goethe Institut Logo" className="partnership-logo" />
                     <div className="partnership-name">Goethe Institut</div>
                   </div>
                 </div>
