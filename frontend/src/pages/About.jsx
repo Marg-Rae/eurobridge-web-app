@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const About = () => {
   return (
     <section className="page">
@@ -42,6 +44,14 @@ const About = () => {
           <p>Learn the context behind the words, from etiquette to expression.</p>
         </article>
       </div>
+
+      <section className="cta-panel">
+        <div>
+          <h2>Ready to Master Languages?</h2>
+          <p>Join our community of confident global communicators. Take the first step toward language mastery today.</p>
+        </div>
+        <Link to="/auth" className="button primary">Join Us</Link>
+      </section>
 
       <section className="panel-section">
         <div className="section-header">

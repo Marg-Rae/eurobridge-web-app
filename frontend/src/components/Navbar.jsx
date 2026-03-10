@@ -52,11 +52,11 @@ const Navbar = () => {
           </button>
         ) : (
           <>
-            <Link to="/auth" className="portal-button">
+            <Link to="/auth?type=staff" className="portal-button">
               Staff Portal
             </Link>
-            <Link to="/auth" className="portal-button ghost">
-              Student Posrtal
+            <Link to="/auth?type=student" className="portal-button ghost">
+              Student Portal
             </Link>
           </>
         )}

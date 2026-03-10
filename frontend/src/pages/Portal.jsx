@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import api from "../api/axios.js";
 import Loading from "../components/Loading.jsx";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const Portal = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const userType = searchParams.get("type") || "student";
   const [authToken, setAuthToken] = useState(() => localStorage.getItem("authToken") || "");
   const [authMode, setAuthMode] = useState("signin");
-  const [authForm, setAuthForm] = useState({ name: "", email: "", password: "" });
+  const [authForm, setAuthForm] = useState({ name: "", email: "", password: "", userType });
   const [authStatus, setAuthStatus] = useState({ loading: false, error: "", success: "" });
 
   const setToken = (token) => {
@@ -44,12 +46,13 @@ const Portal = () => {
       setAuthStatus({ loading: false, error: "", success: successMessage });
 
       if (authMode === "register") {
-        setAuthForm({ name: "", email: "", password: "" });
+        setAuthForm({ name: "", email: "", password: "", userType });
       }
 
-      // Redirect after 1.5 seconds
+      // Redirect to appropriate dashboard after 1.5 seconds
+      const redirectPath = userType === "staff" ? "/staff-dashboard" : "/student-dashboard";
       setTimeout(() => {
-        navigate("/");
+        navigate(redirectPath);
       }, 1500);
     } catch (error) {
       const errorMessage = authMode === "register"
@@ -97,7 +100,7 @@ const Portal = () => {
   return (
     <section className="page">
       <div className="section-header">
-        <h1>Student & Staff Portal</h1>
+        <h1>{userType === "staff" ? "Staff" : "Student"} Portal</h1>
         <p>Register for an account or sign in to access your learning dashboard.</p>
       </div>
       <section className="panel-section portal-page">

@@ -7,6 +7,8 @@ import About from "./pages/About.jsx";
 import Academics from "./pages/Academics.jsx";
 import Elearning from "./pages/Elearning.jsx";
 import Portal from "./pages/Portal.jsx";
+import StudentDashboard from "./components/StudentDashboard.jsx";
+import StaffDashboard from "./components/StaffDashboard.jsx";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
             <Route path="/academics" element={<Academics />} />
             <Route path="/elearning" element={<Elearning />} />
             <Route path="/auth" element={<Portal />} />
+            <Route path="/student-dashboard" element={<StudentDashboard />} />
+            <Route path="/staff-dashboard" element={<StaffDashboard />} />
           </Routes>
         </main>
         <Footer />

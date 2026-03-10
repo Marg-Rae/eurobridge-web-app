@@ -74,31 +74,15 @@ const Home = () => {
               preload="auto"
             />
           </div>
-          <div className="hero-text-container">
-            <div className="hero-keywords">
-              <span>English</span>
-              <span>German</span>
-              <span>Chinese</span>
-              <span>French</span>
-              <span>Swahili</span>
-              <span>Kalenjin</span>
-            </div>
-            <div className="hero-stats">
-              <div>
-                <strong>98%</strong>
-                <span>Completion rate</span>
+          <div className="hero-caption-container">
+            <div className="hero-caption-content">
+              <h2 className="hero-caption-title">Bridging Languages. Creating Opportunities</h2>
+              <p className="hero-caption-subtitle">Master Global Languages with Confidence</p>
+              <p className="hero-caption-description">Gain the skills you need for international education, careers, and cultural connections.</p>
+              <div className="hero-caption-buttons">
+                <Link to="/academics" className="button primary">Explore Courses</Link>
+                <Link to="/auth" className="button secondary">Apply Now</Link>
               </div>
-              <div>
-                <strong>6</strong>
-                <span>Core languages</span>
-              </div>
-              <div>
-                <strong>1:1</strong>
-                <span>Coaching focus</span>
-              </div>
-            </div>
-            <div className="hero-cta-buttons">
-              <Link to="/register" className="button cta-register">Register Now</Link>
             </div>
           </div>
         </div>
@@ -110,7 +94,7 @@ const Home = () => {
             <span className="announcement-badge">HOT</span> Announcements &amp; News
           </h2>
           <p>Latest updates, partnerships, and program opportunities.</p>
-          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Updates</Link>
+          <Link to="/academics" className="button primary" style={{marginTop: '1rem'}}>Start Your Journey</Link>
         </div>
         <div className="announcements-grid flashy-grid">
           <article className="announcement-card flashy-card">
@@ -211,7 +195,7 @@ const Home = () => {
         <div className="section-header">
           <h2>Start Your Language Journey Today</h2>
           <p>Get exclusive resources and offers to kickstart your learning</p>
-          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Free Trial</Link>
+          <Link to="/auth?type=student" className="button primary" style={{marginTop: '1rem'}}>Register for Free Trial</Link>
         </div>
         <div className="lead-magnet-grid">
           <div className="lead-magnet-card">
@@ -246,7 +230,7 @@ const Home = () => {
         <div className="section-header">
           <h2>Courses overview</h2>
           <p>Sliding highlights from our flagship language tracks.</p>
-          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Courses</Link>
+          <Link to="/auth?type=student" className="button primary" style={{marginTop: '1rem'}}>Register for Courses</Link>
         </div>
         <div className="courses-slider">
           <div className="slider-track">
@@ -270,7 +254,7 @@ const Home = () => {
             English, German, Chinese, French, Swahili, and Kalenjin programs
             designed around your goals and schedule.
           </p>
-          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Language Tracks</Link>
+          <Link to="/auth?type=student" className="button primary" style={{marginTop: '1rem'}}>Register for Language Tracks</Link>
         </div>
         <div className="card-grid">
           {[

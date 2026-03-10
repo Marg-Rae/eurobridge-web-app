@@ -79,8 +79,8 @@ main {
 }
 
 .brand-logo {
-  width: 54px;
-  height: 54px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 10px 20px var(--shadow);
@@ -417,8 +417,77 @@ main {
 
 .hero-banner {
   display: grid;
-  gap: 2.5rem;
+  gap: 0;
+  align-items: stretch;
+}
+
+.hero-flex {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
   align-items: center;
+}
+
+.hero-media-container {
+  position: relative;
+  border-radius: 2rem;
+  overflow: hidden;
+  min-height: 380px;
+  height: clamp(320px, 45vw, 420px);
+  box-shadow: 0 24px 48px var(--shadow-strong);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-caption-container {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fff6e8 0%, #fffaf1 100%);
+  border-radius: 2rem;
+  box-shadow: 0 24px 48px var(--shadow-strong);
+  min-height: 380px;
+}
+
+.hero-caption-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.hero-caption-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.hero-caption-subtitle {
+  font-size: 1.2rem;
+  color: var(--accent-dark);
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero-caption-description {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.hero-caption-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }
 
 .hero-media {
@@ -428,13 +497,6 @@ main {
   min-height: 320px;
   height: clamp(280px, 42vw, 380px);
   box-shadow: 0 24px 48px var(--shadow-strong);
-}
-
-.hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .hero-overlay {
@@ -1160,6 +1222,21 @@ textarea {
     align-items: flex-start;
   }
 
+  .hero-flex {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hero-media-container {
+    min-height: 260px;
+    height: clamp(240px, 60vw, 320px);
+  }
+
+  .hero-caption-container {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+
   .hero-media {
     min-height: 260px;
     height: clamp(240px, 60vw, 320px);
@@ -1603,5 +1680,345 @@ textarea {
   color: white;
   padding: 0.5rem;
 }
+
+/* ==============================
+   DASHBOARD STYLES
+   ============================== */
+.dashboard {
+  background: var(--panel);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  box-shadow: 0 24px 48px var(--shadow);
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid rgba(15, 23, 42, 0.1);
+  padding-bottom: 1.5rem;
+}
+
+.dashboard-header h1 {
+  margin: 0 0 0.5rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #ffffff, #fff6ea);
+  padding: 1.6rem;
+  border-radius: 1.4rem;
+  box-shadow: 0 12px 24px var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.progress-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e9e3d9;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--brand-blue));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  border-bottom: 2px solid rgba(15, 23, 42, 0.1);
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  margin-bottom: -2px;
+}
+
+.tab-button:hover {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.tab-button.active {
+  color: var(--ink);
+  border-bottom-color: var(--brand-blue);
+}
+
+.tab-content {
+  margin-top: 2rem;
+}
+
+.dashboard-description {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.dashboard-section {
+  margin: 1.5rem 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+}
+
+.course-list {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.course-item {
+  background: linear-gradient(135deg, #ffffff, #fff6ea);
+  padding: 1.8rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 12px 24px var(--shadow);
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--accent);
+}
+
+.course-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px var(--shadow-strong);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.course-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.course-status {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.course-status.active {
+  background: #d1f4ea;
+  color: #0d6e54;
+}
+
+.course-status.inactive {
+  background: #f3d9d9;
+  color: #7a2e2e;
+}
+
+.course-meta {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0.8rem 0;
+}
+
+.course-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.student-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.student-item {
+  background: linear-gradient(135deg, #ffffff, #fff6ea);
+  padding: 1.6rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 12px 24px var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 1.5rem;
+  align-items: center;
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--brand-blue);
+}
+
+.student-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px var(--shadow-strong);
+}
+
+.student-info h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+
+.student-info p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.student-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.analytics-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.analytics-card {
+  background: linear-gradient(135deg, #ffffff, #fff6ea);
+  padding: 1.8rem;
+  border-radius: 1.4rem;
+  box-shadow: 0 12px 24px var(--shadow);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.analytics-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px var(--shadow-strong);
+}
+
+.analytics-card h3 {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.analytics-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+  margin-bottom: 0.5rem;
+}
+
+.analytics-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1.2rem;
+  border: 2px dashed rgba(15, 23, 42, 0.2);
+}
+
+@media (max-width: 900px) {
+  .student-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .student-stats {
+    text-align: left;
+  }
+}
+
+@media (max-width: 720px) {
+  .dashboard {
+    padding: 1.5rem;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-tabs {
+    gap: 0.5rem;
+  }
+
+  .tab-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .analytics-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
