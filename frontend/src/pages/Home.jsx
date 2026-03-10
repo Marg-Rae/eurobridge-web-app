@@ -6,22 +6,22 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Lynn K.",
-      role: "Business English graduate",
-      quote: "My client calls are smoother and I finally speak without second-guessing.",
-      image: "/media/student-lynn-k.jpg"
+      name: "Wallace K.",
+      role: "Student",
+      quote: "Eurobridge helped me achieve my language goals.",
+      image: "/media/wallace-k.jpeg"
     },
     {
-      name: "Samuel O.",
-      role: "German A2 learner",
-      quote: "The coaching labs gave me the confidence to pass my Goethe exam.",
-      image: "/media/student-samuel-o.jpg"
+      name: "S. Muthoni",
+      role: "Alumni",
+      quote: "The support and resources were amazing!",
+      image: "/media/s-muthoni.jpeg"
     },
     {
-      name: "Aisha M.",
-      role: "IELTS achiever",
-      quote: "Weekly feedback kept me focused, and I hit my target score in one cycle.",
-      image: "/media/student-aisha-m.jpg"
+      name: "Bill K.",
+      role: "Student",
+      quote: "I recommend Eurobridge to anyone serious about learning.",
+      image: "/media/bill-k.jpeg"
     }
   ];
 
@@ -61,39 +61,45 @@ const Home = () => {
   return (
     <div className="page">
       <section className="hero-banner">
-        <div className="hero-media">
-          <video
-            className="hero-video"
-            src="/media/hero.mp4"
-            poster="/media/hero-poster.jpg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          />
-          <div className="hero-overlay" />
-          <div className="hero-keywords">
-            <span>English</span>
-            <span>German</span>
-            <span>Chinese</span>
-            <span>French</span>
-            <span>Swahili</span>
-            <span>Kalenjin</span>
+        <div className="hero-flex">
+          <div className="hero-media-container">
+            <video
+              className="hero-video"
+              src="/media/hero.mp4"
+              poster="/media/hero-poster.jpg"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+            />
           </div>
-        </div>
-        <div className="hero-stats">
-          <div>
-            <strong>98%</strong>
-            <span>Completion rate</span>
-          </div>
-          <div>
-            <strong>6</strong>
-            <span>Core languages</span>
-          </div>
-          <div>
-            <strong>1:1</strong>
-            <span>Coaching focus</span>
+          <div className="hero-text-container">
+            <div className="hero-keywords">
+              <span>English</span>
+              <span>German</span>
+              <span>Chinese</span>
+              <span>French</span>
+              <span>Swahili</span>
+              <span>Kalenjin</span>
+            </div>
+            <div className="hero-stats">
+              <div>
+                <strong>98%</strong>
+                <span>Completion rate</span>
+              </div>
+              <div>
+                <strong>6</strong>
+                <span>Core languages</span>
+              </div>
+              <div>
+                <strong>1:1</strong>
+                <span>Coaching focus</span>
+              </div>
+            </div>
+            <div className="hero-cta-buttons">
+              <Link to="/register" className="button cta-register">Register Now</Link>
+            </div>
           </div>
         </div>
       </section>
@@ -104,14 +110,15 @@ const Home = () => {
             <span className="announcement-badge">HOT</span> Announcements &amp; News
           </h2>
           <p>Latest updates, partnerships, and program opportunities.</p>
+          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Updates</Link>
         </div>
         <div className="announcements-grid flashy-grid">
           <article className="announcement-card flashy-card">
             <div className="flashy-border-animation"></div>
             <img
               className="announcement-media"
-              src="/media/announcement-partnership.jpg"
-              alt="Partnership announcement handshake"
+              src="/media/partnership-announcement.png"
+              alt="Partnership announcement"
             />
             <div className="announcement-meta">
               <span className="announcement-date pulse-animation">Feb 11, 2026</span>
@@ -204,6 +211,7 @@ const Home = () => {
         <div className="section-header">
           <h2>Start Your Language Journey Today</h2>
           <p>Get exclusive resources and offers to kickstart your learning</p>
+          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Free Trial</Link>
         </div>
         <div className="lead-magnet-grid">
           <div className="lead-magnet-card">
@@ -238,6 +246,7 @@ const Home = () => {
         <div className="section-header">
           <h2>Courses overview</h2>
           <p>Sliding highlights from our flagship language tracks.</p>
+          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Courses</Link>
         </div>
         <div className="courses-slider">
           <div className="slider-track">
@@ -261,6 +270,7 @@ const Home = () => {
             English, German, Chinese, French, Swahili, and Kalenjin programs
             designed around your goals and schedule.
           </p>
+          <Link to="/register" className="button cta-register" style={{marginTop: '1rem'}}>Register for Language Tracks</Link>
         </div>
         <div className="card-grid">
           {[
