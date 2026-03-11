@@ -5,6 +5,7 @@ import Loading from "./Loading.jsx";
 const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentBlog, setCurrentBlog] = useState(0);
 
   useEffect(() => {
     const fetchLatestBlogs = async () => {
@@ -32,6 +33,24 @@ const BlogSection = () => {
     fetchLatestBlogs();
   }, []);
 
+  // Auto-advance carousel every 6 seconds
+  useEffect(() => {
+    if (blogs.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setCurrentBlog((prev) => (prev + 1) % blogs.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [blogs.length]);
+
+  const nextBlog = () => {
+    setCurrentBlog((prev) => (prev + 1) % blogs.length);
+  };
+
+  const prevBlog = () => {
+    setCurrentBlog((prev) => (prev - 1 + blogs.length) % blogs.length);
+  };
+
   if (loading) return <div className="blog-section"><Loading /></div>;
 
   if (blogs.length === 0) return null;
@@ -44,21 +63,58 @@ const BlogSection = () => {
           Tips, insights, and resources for international students
         </p>
 
-        <div className="blog-section-grid">
-          {blogs.map((blog) => (
-            <div key={blog._id} className="blog-section-card">
-              {blog.image && (
-                <div className="blog-section-image">
-                  <img src={blog.image} alt={blog.title} />
-                </div>
-              )}
-              <h3>{blog.title}</h3>
-              <p>{blog.summary}</p>
-              <Link to={`/blog/${blog.slug}`} className="link-arrow">
-                Read Full Article →
-              </Link>
-            </div>
-          ))}
+        <div className="blog-carousel">
+          <button
+            className="carousel-nav prev"
+            onClick={prevBlog}
+            aria-label="Previous blog"
+          >
+            ‹
+          </button>
+
+          <div className="blog-slides">
+            {blogs.map((blog, index) => (
+              <article
+                key={blog._id}
+                className={`blog-section-card ${index === currentBlog ? 'active' : ''}`}
+                style={{
+                  transform: `translateX(${(index - currentBlog) * 100}%)`,
+                  opacity: index === currentBlog ? 1 : 0,
+                  transition: 'all 0.5s ease-in-out'
+                }}
+              >
+                {blog.image && (
+                  <div className="blog-section-image">
+                    <img src={blog.image} alt={blog.title} />
+                  </div>
+                )}
+                <h3>{blog.title}</h3>
+                <p>{blog.summary}</p>
+                <Link to={`/blog/${blog.slug}`} className="link-arrow">
+                  Read Full Article →
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          <button
+            className="carousel-nav next"
+            onClick={nextBlog}
+            aria-label="Next blog"
+          >
+            ›
+          </button>
+
+          <div className="carousel-dots">
+            {blogs.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${index === currentBlog ? 'active' : ''}`}
+                onClick={() => setCurrentBlog(index)}
+                aria-label={`Go to blog ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="blog-section-cta">
