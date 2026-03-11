@@ -1,8 +1,15 @@
 import axios from "axios";
 
+// Determine API base URL
+let baseURL = "http://localhost:5000"; // Default for local development
+
+// Use production URL for built app or non-localhost environments
+if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+  baseURL = "https://eurobridge-web-app-2.onrender.com";
+}
+
 const api = axios.create({
-  // Set VITE_API_BASE_URL to your Render API URL in Netlify env vars.
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+  baseURL: baseURL
 });
 
 export default api;
