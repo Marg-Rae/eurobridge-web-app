@@ -9,7 +9,14 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchLatestBlogs = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+        // Determine API base URL (same logic as axios.js)
+        let apiUrl = "http://localhost:5000"; // Default for local development
+        
+        // Use production URL for non-localhost environments
+        if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+          apiUrl = "https://eurobridge-web-app.onrender.com";
+        }
+        
         const response = await fetch(`${apiUrl}/api/blogs`);
         if (response.ok) {
           const data = await response.json();
