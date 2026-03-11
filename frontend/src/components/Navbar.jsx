@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 
 const Navbar = () => {
   const isHidden = useRef(false);
   const lastScrollY = useRef(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,11 +50,11 @@ const Navbar = () => {
         </div>
         <nav className="nav-links">
           <NavLink to="/" end>
-            Home
+            {t("nav.home")}
           </NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/academics">Academics</NavLink>
-          <NavLink to="/elearning">E-Learning</NavLink>
+          <NavLink to="/about">{t("nav.about")}</NavLink>
+          <NavLink to="/academics">{t("nav.academics")}</NavLink>
+          <NavLink to="/elearning">{t("nav.elearning")}</NavLink>
           <NavLink to="/blog">Blog</NavLink>
         </nav>
       </div>
