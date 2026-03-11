@@ -1,32 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { useLanguage } from "../contexts/LanguageContext.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
-import api from "../api/axios.js";
 
 const Navbar = () => {
-  const { t } = useLanguage();
-  const [authToken, setAuthToken] = useState(() => localStorage.getItem("authToken") || "");
-  const [isHidden, setIsHidden] = useState(false);
+  const isHidden = useRef(false);
   const lastScrollY = useRef(0);
-
-  const setToken = (token) => {
-    setAuthToken(token);
-    if (token) {
-      localStorage.setItem("authToken", token);
-    } else {
-      localStorage.removeItem("authToken");
-    }
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await api.post("/api/auth/logout");
-      setToken("");
-    } catch (error) {
-      console.error("Unable to sign out right now.", error);
-    }
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +12,13 @@ const Navbar = () => {
       const isScrollingDown = currentY > lastScrollY.current;
       const shouldHide = isScrollingDown && currentY > 140;
 
-      setIsHidden(shouldHide);
+      if (shouldHide !== isHidden.current) {
+        isHidden.current = shouldHide;
+        const header = document.querySelector(".site-header");
+        if (header) {
+          header.classList.toggle("is-hidden", shouldHide);
+        }
+      }
       lastScrollY.current = currentY;
     };
 
@@ -43,23 +27,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={isHidden ? "site-header is-hidden" : "site-header"}>
+    <header className="site-header">
       <div className="header-top">
         <LanguageSwitcher />
-        {authToken ? (
-          <button type="button" className="portal-button" onClick={handleSignOut}>
-            Sign Out
-          </button>
-        ) : (
-          <>
-            <Link to="/auth?type=staff" className="portal-button">
-              Staff Portal
-            </Link>
-            <Link to="/auth?type=student" className="portal-button ghost">
-              Student Portal
-            </Link>
-          </>
-        )}
+        <Link to="/school-portal" className="portal-button">
+          School Portal
+        </Link>
       </div>
       <div className="header-bottom">
         <div className="brand-wrap">
@@ -75,11 +48,12 @@ const Navbar = () => {
         </div>
         <nav className="nav-links">
           <NavLink to="/" end>
-            {t("nav.home")}
+            Home
           </NavLink>
-          <NavLink to="/about">{t("nav.about")}</NavLink>
-          <NavLink to="/academics">{t("nav.academics")}</NavLink>
-          <NavLink to="/elearning">{t("nav.elearning")}</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/academics">Academics</NavLink>
+          <NavLink to="/elearning">E-Learning</NavLink>
+          <NavLink to="/blog">Blog</NavLink>
         </nav>
       </div>
 

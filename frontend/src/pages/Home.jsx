@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import BlogSection from "../components/BlogSection.jsx";
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -81,7 +82,7 @@ const Home = () => {
               <p className="hero-caption-description">Gain the skills you need for international education, careers, and cultural connections.</p>
               <div className="hero-caption-buttons">
                 <Link to="/academics" className="button primary">Explore Courses</Link>
-                <Link to="/auth" className="button secondary">Apply Now</Link>
+                <Link to="/school-portal" className="button secondary">Apply Now</Link>
               </div>
             </div>
           </div>
@@ -94,7 +95,6 @@ const Home = () => {
             <span className="announcement-badge">HOT</span> Announcements &amp; News
           </h2>
           <p>Latest updates, partnerships, and program opportunities.</p>
-          <Link to="/academics" className="button primary" style={{marginTop: '1rem'}}>Start Your Journey</Link>
         </div>
         <div className="announcements-grid flashy-grid">
           <article className="announcement-card flashy-card">
@@ -139,6 +139,8 @@ const Home = () => {
           </article>
         </div>
       </section>
+
+      <BlogSection />
 
       <section className="panel-section">
         <div className="section-header">
@@ -195,7 +197,6 @@ const Home = () => {
         <div className="section-header">
           <h2>Start Your Language Journey Today</h2>
           <p>Get exclusive resources and offers to kickstart your learning</p>
-          <Link to="/auth?type=student" className="button primary" style={{marginTop: '1rem'}}>Register for Free Trial</Link>
         </div>
         <div className="lead-magnet-grid">
           <div className="lead-magnet-card">
@@ -230,7 +231,7 @@ const Home = () => {
         <div className="section-header">
           <h2>Courses overview</h2>
           <p>Sliding highlights from our flagship language tracks.</p>
-          <Link to="/auth?type=student" className="button primary" style={{marginTop: '1rem'}}>Register for Courses</Link>
+          <Link to="/school-portal" className="button primary" style={{marginTop: '1rem'}}>Register for Courses</Link>
         </div>
         <div className="courses-slider">
           <div className="slider-track">
@@ -254,7 +255,6 @@ const Home = () => {
             English, German, Chinese, French, Swahili, and Kalenjin programs
             designed around your goals and schedule.
           </p>
-          <Link to="/auth?type=student" className="button primary" style={{marginTop: '1rem'}}>Register for Language Tracks</Link>
         </div>
         <div className="card-grid">
           {[

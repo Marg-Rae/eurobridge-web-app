@@ -1,25 +1,21 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axios.js";
 import Loading from "../components/Loading.jsx";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const Portal = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const userType = searchParams.get("type") || "student";
-  const [authToken, setAuthToken] = useState(() => localStorage.getItem("authToken") || "");
-  const [authMode, setAuthMode] = useState("signin");
-  const [authForm, setAuthForm] = useState({ name: "", email: "", password: "", userType });
+  const [step, setStep] = useState("role-select"); // "role-select", "auth"
+  const [userType, setUserType] = useState(""); // "student" or "staff"
+  const [authMode, setAuthMode] = useState("signin"); // "signin" or "register"
+  const [authForm, setAuthForm] = useState({ name: "", email: "", password: "" });
   const [authStatus, setAuthStatus] = useState({ loading: false, error: "", success: "" });
 
-  const setToken = (token) => {
-    setAuthToken(token);
-    if (token) {
-      localStorage.setItem("authToken", token);
-    } else {
-      localStorage.removeItem("authToken");
-    }
+  const handleRoleSelect = (role) => {
+    setUserType(role);
+    setStep("auth");
+    setAuthStatus({ loading: false, error: "", success: "" });
   };
 
   const handleAuthChange = (event) => {
@@ -33,26 +29,26 @@ const Portal = () => {
 
     try {
       const payload = authMode === "register"
-        ? authForm
+        ? { ...authForm, userType }
         : { email: authForm.email, password: authForm.password };
+      
       const endpoint = authMode === "register" ? "/api/auth/register" : "/api/auth/login";
       const response = await api.post(endpoint, payload);
-      setToken(response.data.token || "");
+      
+      if (response.data.token) {
+        localStorage.setItem("authToken", response.data.token);
+      }
 
       const successMessage = authMode === "register"
-        ? "Account created successfully! Welcome to Eurobridge."
-        : "Signed in successfully.";
+        ? "Account created successfully! Redirecting to your dashboard..."
+        : "Signed in successfully. Redirecting to your dashboard...";
 
       setAuthStatus({ loading: false, error: "", success: successMessage });
 
-      if (authMode === "register") {
-        setAuthForm({ name: "", email: "", password: "", userType });
-      }
-
-      // Redirect to appropriate dashboard after 1.5 seconds
-      const redirectPath = userType === "staff" ? "/staff-dashboard" : "/student-dashboard";
+      // Redirect after 1.5 seconds
       setTimeout(() => {
-        navigate(redirectPath);
+        const dashboardPath = userType === "staff" ? "/staff-dashboard" : "/student-dashboard";
+        navigate(dashboardPath);
       }, 1500);
     } catch (error) {
       const errorMessage = authMode === "register"
@@ -62,34 +58,32 @@ const Portal = () => {
     }
   };
 
-  const handleSignOut = async () => {
-    setAuthStatus({ loading: true, error: "", success: "" });
-    try {
-      await api.post("/api/auth/logout");
-      setToken("");
-      setAuthStatus({ loading: false, error: "", success: "Signed out successfully." });
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    } catch (error) {
-      setAuthStatus({ loading: false, error: "Unable to sign out right now.", success: "" });
-    }
+  const handleBackToRoleSelect = () => {
+    setStep("role-select");
+    setAuthForm({ name: "", email: "", password: "" });
+    setAuthStatus({ loading: false, error: "", success: "" });
   };
 
-  if (authToken) {
+  if (step === "role-select") {
     return (
       <section className="page">
-        <div className="section-header">
-          <h1>Welcome Back</h1>
-          <p>You are signed in and ready to access your learning dashboard.</p>
+        <div className="section-header" style={{ textAlign: "center" }}>
+          <h1>Welcome to Eurobridge</h1>
+          <p>Choose your role to get started</p>
         </div>
-        <section className="panel-section portal-page">
-          <div className="portal-card">
-            <div className="portal-footer">
-              <span className="status success">Session active. You&apos;re signed in.</span>
-              <button type="button" className="button ghost" onClick={handleSignOut}>
-                Sign Out
-              </button>
+        <section className="panel-section">
+          <div className="role-select-container">
+            <div className="role-card" onClick={() => handleRoleSelect("student")}>
+              <div className="role-icon">👨‍🎓</div>
+              <h3>Student</h3>
+              <p>Access your courses, track progress, and manage your learning journey</p>
+              <button type="button" className="button primary">Continue as Student</button>
+            </div>
+            <div className="role-card" onClick={() => handleRoleSelect("staff")}>
+              <div className="role-icon">👨‍🏫</div>
+              <h3>Staff/Instructor</h3>
+              <p>Manage courses, track student progress, and access analytics</p>
+              <button type="button" className="button primary">Continue as Staff</button>
             </div>
           </div>
         </section>
@@ -99,12 +93,21 @@ const Portal = () => {
 
   return (
     <section className="page">
-      <div className="section-header">
+      <div className="section-header" style={{ textAlign: "center" }}>
         <h1>{userType === "staff" ? "Staff" : "Student"} Portal</h1>
-        <p>Register for an account or sign in to access your learning dashboard.</p>
+        <p>Sign in or create an account to access your dashboard</p>
       </div>
       <section className="panel-section portal-page">
         <div className="portal-card">
+          <button 
+            type="button" 
+            className="button secondary" 
+            onClick={handleBackToRoleSelect}
+            style={{ marginBottom: "1.5rem" }}
+          >
+            ← Change Role
+          </button>
+          
           <div className="auth-tabs">
             <button
               type="button"
@@ -127,6 +130,7 @@ const Portal = () => {
               Register
             </button>
           </div>
+
           <form className="auth-form" onSubmit={handleAuthSubmit}>
             {authMode === "register" && (
               <label>
@@ -168,25 +172,34 @@ const Portal = () => {
             </button>
           </form>
 
-          {authStatus.loading && <Loading label="Submitting" />}
+          {authStatus.loading && <Loading label="Processing" />}
           {authStatus.error && <ErrorMessage message={authStatus.error} />}
           {authStatus.success && (
             <div className="status success">{authStatus.success}</div>
           )}
         </div>
+
         <div className="portal-info">
-          <h3>Why create an account?</h3>
-          <p>
-            Get access to your personalized learning dashboard, track progress, and
-            stay updated with course schedules and notifications.
-          </p>
-          <ul>
-            <li>Track your application and enrollment status</li>
-            <li>Access course materials and live session recordings</li>
-            <li>View your progress reports and assessments</li>
-            <li>Manage your schedule and cohort assignments</li>
-            <li>Communicate directly with mentors</li>
-          </ul>
+          <h3>
+            {userType === "staff" ? "Staff Account Benefits" : "Student Account Benefits"}
+          </h3>
+          {userType === "staff" ? (
+            <ul>
+              <li>Manage your courses and curriculum</li>
+              <li>Track student progress and performance</li>
+              <li>Access detailed analytics and reports</li>
+              <li>Create and assign assessments</li>
+              <li>Communicate with students and colleagues</li>
+            </ul>
+          ) : (
+            <ul>
+              <li>Track your application and enrollment status</li>
+              <li>Access course materials and live session recordings</li>
+              <li>View your progress reports and assessments</li>
+              <li>Manage your schedule and cohort assignments</li>
+              <li>Communicate directly with mentors</li>
+            </ul>
+          )}
         </div>
       </section>
     </section>
