@@ -1,6 +1,37 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const About = () => {
+  const [currentTeamMember, setCurrentTeamMember] = useState(0);
+
+  const teamMembers = [
+    {
+      name: "Chepkoech K.",
+      role: "Web & Digital Operations Manager",
+      image: "/media/chepkoech-k.jpg"
+    },
+    {
+      name: "Bond N.",
+      role: "Digital Marketing Assistant",
+      image: "/media/bond-n.jpg"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTeamMember((prev) => (prev + 1) % teamMembers.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [teamMembers.length]);
+
+  const nextTeamMember = () => {
+    setCurrentTeamMember((prev) => (prev + 1) % teamMembers.length);
+  };
+
+  const prevTeamMember = () => {
+    setCurrentTeamMember((prev) => (prev - 1 + teamMembers.length) % teamMembers.length);
+  };
+
   return (
     <section className="page">
       <div className="about-hero">
@@ -109,32 +140,53 @@ const About = () => {
           <h2>Meet our team</h2>
           <p>Dedicated mentors and leaders guiding every learning journey.</p>
         </div>
-        <div className="team-grid">
-          {[
-            {
-              name: "Dr. Esther K.",
-              role: "Director",
-              image: "/media/director.jpg"
-            },
-            {
-              name: "David M.",
-              role: "Lead Tutor",
-              image: "/media/lead-tutor.jpg"
-            },
-            {
-              name: "Joyce A.",
-              role: "Student Success Tutor",
-              image: "/media/student-success-tutor.jpg"
-            }
-          ].map((member) => (
-            <article key={member.name} className="team-card">
-              <img src={member.image} alt={member.name} />
-              <div>
-                <h3>{member.name}</h3>
-                <span>{member.role}</span>
-              </div>
-            </article>
-          ))}
+        <div className="team-carousel">
+          <button
+            className="carousel-nav prev"
+            onClick={prevTeamMember}
+            aria-label="Previous team member"
+          >
+            ‹
+          </button>
+
+          <div className="team-slides">
+            {teamMembers.map((member, index) => (
+              <article
+                key={member.name}
+                className={`team-card ${index === currentTeamMember ? 'active' : ''}`}
+                style={{
+                  transform: `translateX(${(index - currentTeamMember) * 100}%)`,
+                  opacity: index === currentTeamMember ? 1 : 0,
+                  transition: 'all 0.5s ease-in-out'
+                }}
+              >
+                <img src={member.image} alt={member.name} />
+                <div>
+                  <h3>{member.name}</h3>
+                  <span>{member.role}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <button
+            className="carousel-nav next"
+            onClick={nextTeamMember}
+            aria-label="Next team member"
+          >
+            ›
+          </button>
+
+          <div className="carousel-dots">
+            {teamMembers.map((_, index) => (
+              <button
+                key={index}
+                className={`dot ${index === currentTeamMember ? 'active' : ''}`}
+                onClick={() => setCurrentTeamMember(index)}
+                aria-label={`Go to team member ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
