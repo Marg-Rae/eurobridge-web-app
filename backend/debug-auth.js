@@ -5,8 +5,11 @@ import User from "./src/models/User.js";
 
 dotenv.config();
 
+console.log("🚀 Starting auth debug...");
+
 const debugAuth = async () => {
   try {
+    console.log("📊 Connecting to MongoDB...");
     // Connect to MongoDB
     await mongoose.connect(process.env.MONGODB_URI, {
       dbName: process.env.MONGODB_DB_NAME || "eurobridge"
