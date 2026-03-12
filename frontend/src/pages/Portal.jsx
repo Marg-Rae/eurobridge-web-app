@@ -45,9 +45,10 @@ const Portal = () => {
 
       setAuthStatus({ loading: false, error: "", success: successMessage });
 
-      // Redirect after 1.5 seconds
+      // Redirect after 1.5 seconds using role from response
       setTimeout(() => {
-        const dashboardPath = userType === "staff" ? "/staff-dashboard" : "/student-dashboard";
+        const userRole = response.data.user?.role || userType;
+        const dashboardPath = userRole === "staff" ? "/staff-dashboard" : "/student-dashboard";
         navigate(dashboardPath);
       }, 1500);
     } catch (error) {

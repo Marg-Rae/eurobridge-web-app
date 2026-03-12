@@ -11,7 +11,7 @@ const signToken = (user) =>
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, userType } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email, and password are required" });
@@ -23,12 +23,18 @@ export const register = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
-    const user = await User.create({ name, email, password: hashedPassword });
+    const user = await User.create({ 
+      name, 
+      email, 
+      password: hashedPassword,
+      role: userType || "student"
+    });
     const token = signToken(user);
 
-    return res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    return res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to register user" });
+    console.error("Registration error:", error.message);
+    return res.status(500).json({ message: "Failed to register user", error: error.message });
   }
 };
 
@@ -51,9 +57,10 @@ export const login = async (req, res) => {
     }
 
     const token = signToken(user);
-    return res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    return res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to login" });
+    console.error("Login error:", error.message);
+    return res.status(500).json({ message: "Failed to login", error: error.message });
   }
 };
 
