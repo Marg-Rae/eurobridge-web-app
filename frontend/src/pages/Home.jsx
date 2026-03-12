@@ -142,6 +142,40 @@ const Home = () => {
 
       <BlogSection />
 
+      <section className="panel-section lead-magnet-section">
+        <div className="section-header">
+          <h2>Start Your Language Journey Today</h2>
+          <p>Get exclusive resources and offers to kickstart your learning</p>
+        </div>
+        <div className="lead-magnet-grid">
+          <div className="lead-magnet-card">
+            <div className="magnet-icon">📚</div>
+            <h3>Free Language Guide</h3>
+            <p>Download our comprehensive beginner's guide to learning German or Chinese. Includes essential phrases, cultural tips, and study strategies.</p>
+            <Link to="/about#contact-us" className="button primary">
+              Download Free Guide
+            </Link>
+          </div>
+          <div className="lead-magnet-card highlighted">
+            <div className="magnet-badge">POPULAR</div>
+            <div className="magnet-icon">🎯</div>
+            <h3>Free Trial Class</h3>
+            <p>Experience our teaching method firsthand. Join a 60-minute trial class in German, Chinese, or English with no commitment required.</p>
+            <Link to="/about#contact-us" className="button secondary">
+              Book Your Free Trial
+            </Link>
+          </div>
+          <div className="lead-magnet-card">
+            <div className="magnet-icon">📊</div>
+            <h3>Free Language Assessment</h3>
+            <p>Not sure which level to start at? Take our professional language assessment test and get personalized course recommendations.</p>
+            <Link to="/about#contact-us" className="button primary">
+              Take Assessment
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="panel-section">
         <div className="section-header">
           <h2>What our students &amp; alumni say</h2>
@@ -189,40 +223,6 @@ const Home = () => {
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="panel-section lead-magnet-section">
-        <div className="section-header">
-          <h2>Start Your Language Journey Today</h2>
-          <p>Get exclusive resources and offers to kickstart your learning</p>
-        </div>
-        <div className="lead-magnet-grid">
-          <div className="lead-magnet-card">
-            <div className="magnet-icon">📚</div>
-            <h3>Free Language Guide</h3>
-            <p>Download our comprehensive beginner's guide to learning German or Chinese. Includes essential phrases, cultural tips, and study strategies.</p>
-            <Link to="/about#contact-us" className="button primary">
-              Download Free Guide
-            </Link>
-          </div>
-          <div className="lead-magnet-card highlighted">
-            <div className="magnet-badge">POPULAR</div>
-            <div className="magnet-icon">🎯</div>
-            <h3>Free Trial Class</h3>
-            <p>Experience our teaching method firsthand. Join a 60-minute trial class in German, Chinese, or English with no commitment required.</p>
-            <Link to="/about#contact-us" className="button secondary">
-              Book Your Free Trial
-            </Link>
-          </div>
-          <div className="lead-magnet-card">
-            <div className="magnet-icon">📊</div>
-            <h3>Free Language Assessment</h3>
-            <p>Not sure which level to start at? Take our professional language assessment test and get personalized course recommendations.</p>
-            <Link to="/about#contact-us" className="button primary">
-              Take Assessment
-            </Link>
           </div>
         </div>
       </section>
