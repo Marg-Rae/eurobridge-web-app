@@ -68,14 +68,19 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+      console.log("Login attempt:", email);
       const response = await api.post("/api/auth/login", { email, password });
+      console.log("Login response:", response.data);
       const { token, user } = response.data;
+      console.log("Setting auth state - Token:", token ? "Present" : "Missing", "User:", user);
       setToken(token);
       setUser(user);
       localStorage.setItem("token", token);
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      console.log("Auth state set successfully");
       return { success: true, user };
     } catch (error) {
+      console.error("Login error:", error);
       const message = error.response?.data?.message || "Login failed";
       return { success: false, message };
     }
