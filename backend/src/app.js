@@ -5,6 +5,7 @@ import coursesRoutes from "./routes/courses.routes.js";
 import blogsRoutes from "./routes/blogs.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ app.use("/api/courses", coursesRoutes);
 app.use("/api/blogs", blogsRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
