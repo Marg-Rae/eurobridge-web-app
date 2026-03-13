@@ -1,62 +1,100 @@
-import { useState, useEffect } from "react";
-import api from "../api/axios.js";
-import Loading from "./Loading.jsx";
-import ErrorMessage from "./ErrorMessage.jsx";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext.jsx";
 
 const StudentDashboard = () => {
-  const [dashboardData, setDashboardData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchDashboardData = async () => {
-      setLoading(true);
-      setError("");
-
-      try {
-        const response = await api.get("/api/student/dashboard");
-        setDashboardData(response.data);
-      } catch (err) {
-        setError(err.response?.data?.message || "Failed to load dashboard");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDashboardData();
-  }, []);
-
-  if (loading) {
-    return <Loading label="Loading dashboard" />;
-  }
-
-  if (error) {
-    return <ErrorMessage message={error} />;
-  }
-
-  if (!dashboardData) {
-    return <ErrorMessage message="No dashboard data available" />;
-  }
-
-  const { studentName, enrolledCourses, progressPercentage, unreadNotifications } = dashboardData;
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
 
   return (
     <section className="dashboard">
       <div className="dashboard-header">
-        <h1>Welcome, {studentName}</h1>
-        {unreadNotifications > 0 && (
-          <div className="notification-badge">
-            {unreadNotifications} unread notification{unreadNotifications !== 1 ? "s" : ""}
-          </div>
-        )}
+        <div>
+          <h1>Welcome, {user?.name}</h1>
+          <p className="dashboard-subtitle">Student Dashboard</p>
+        </div>
+        <button onClick={handleLogout} className="btn-logout">
+          Logout
+        </button>
       </div>
 
-      <div className="dashboard-stats">
-        <div className="stat-card">
-          <h3>Progress</h3>
-          <div className="progress-value">{progressPercentage}%</div>
-          <div className="progress-bar">
-            <div
+      <div className="dashboard-container">
+        <div className="dashboard-card">
+          <h2>Profile Information</h2>
+          <div className="profile-info">
+            <p>
+              <strong>Name:</strong> {user?.name}
+            </p>
+            <p>
+              <strong>Email:</strong> {user?.email}
+            </p>
+            <p>
+              <strong>Role:</strong> <span className="role-badge">{user?.role}</span>
+            </p>
+          </div>
+        </div>
+
+        <div className="dashboard-card">
+          <h2>Your Courses</h2>
+          <div className="placeholder-content">
+            <p>📚 You are enrolled in the following courses:</p>
+            <ul>
+              <li>Introduction to Programming</li>
+              <li>Web Development Fundamentals</li>
+              <li>Advanced JavaScript</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="dashboard-card">
+          <h2>Progress</h2>
+          <div className="placeholder-content">
+            <p>📊 Your learning progress:</p>
+            <div className="progress-item">
+              <span>Introduction to Programming</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: "75%" }}></div>
+              </div>
+              <span>75%</span>
+            </div>
+            <div className="progress-item">
+              <span>Web Development Fundamentals</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: "60%" }}></div>
+              </div>
+              <span>60%</span>
+            </div>
+            <div className="progress-item">
+              <span>Advanced JavaScript</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: "45%" }}></div>
+              </div>
+              <span>45%</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="dashboard-card">
+          <h2>Notifications</h2>
+          <div className="placeholder-content">
+            <p>🔔 Recent Updates:</p>
+            <ul>
+              <li>✓ Assignment deadline extension: Web Development Project (Next Monday)</li>
+              <li>✓ New course material available in Advanced JavaScript</li>
+              <li>✓ Your instructor posted feedback on your last quiz</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StudentDashboard;
               className="progress-fill"
               style={{ width: `${progressPercentage}%` }}
             />

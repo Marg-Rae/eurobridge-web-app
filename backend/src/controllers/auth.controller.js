@@ -57,7 +57,7 @@ export const login = async (req, res) => {
     }
 
     const token = signToken(user);
-    return res.json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
+    return res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
     console.error("Login error:", error.message);
     return res.status(500).json({ message: "Failed to login", error: error.message });
@@ -65,5 +65,18 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (_req, res) => {
-  return res.json({ message: "Signed out" });
+  return res.status(200).json({ message: "Signed out successfully" });
+};
+
+export const getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.error("Get current user error:", error.message);
+    return res.status(500).json({ message: "Failed to fetch user", error: error.message });
+  }
 };
