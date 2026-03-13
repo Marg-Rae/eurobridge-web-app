@@ -21,6 +21,9 @@ api.interceptors.request.use(
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+      console.log("Request interceptor - Token attached to:", config.url);
+    } else {
+      console.log("Request interceptor - No token for:", config.url);
     }
     return config;
   },
@@ -31,10 +34,15 @@ api.interceptors.request.use(
 
 // Response interceptor to handle errors
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log("Response OK:", response.config.url, response.status);
+    return response;
+  },
   (error) => {
+    console.log("Response Error:", error.config?.url, error.response?.status);
     if (error.response?.status === 401) {
       // Token is invalid or expired
+      console.log("401 Unauthorized - clearing token and redirecting to login");
       localStorage.removeItem("token");
       window.location.href = "/login";
     }

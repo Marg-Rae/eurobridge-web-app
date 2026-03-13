@@ -41,7 +41,8 @@ const Register = () => {
     const result = await register(name, email, password, userType);
 
     if (result.success) {
-      // Redirect based on role
+      // Redirect based on the returned user data (not state, which updates asynchronously)
+      console.log("Registration successful, redirecting - user role:", result.user.role);
       if (result.user.role === "staff") {
         navigate("/dashboard/staff");
       } else {
@@ -49,9 +50,8 @@ const Register = () => {
       }
     } else {
       setError(result.message);
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (

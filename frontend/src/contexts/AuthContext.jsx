@@ -19,26 +19,31 @@ export const AuthProvider = ({ children }) => {
   // Load token from localStorage on mount
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
+    console.log("AuthContext init - SavedToken:", savedToken ? "Present" : "Missing");
     if (savedToken) {
       setToken(savedToken);
-      api.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
+      console.log("Fetching current user with saved token");
       // Verify token is still valid by fetching current user
       fetchCurrentUser(savedToken);
     } else {
+      console.log("No saved token - setting loading to false");
       setLoading(false);
     }
   }, []);
 
   const fetchCurrentUser = async (authToken) => {
     try {
-      const response = await api.get("/api/auth/me", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
+      console.log("Fetching current user...");
+      // Just need to pass the token to localStorage so the interceptor can pick it up
+      if (authToken) {
+        localStorage.setItem("token", authToken);
+      }
+      const response = await api.get("/api/auth/me");
+      console.log("Current user fetched:", response.data.user);
       setUser(response.data.user);
     } catch (error) {
-      console.error("Failed to fetch current user:", error.message);
+      console.error("Failed to fetch current user:", error);
       localStorage.removeItem("token");
-      delete api.defaults.headers.common["Authorization"];
       setToken(null);
       setUser(null);
     } finally {
@@ -55,12 +60,14 @@ export const AuthProvider = ({ children }) => {
         userType,
       });
       const { token, user } = response.data;
+      console.log("Register response:", { token: token ? "Present" : "Missing", user });
       setToken(token);
       setUser(user);
       localStorage.setItem("token", token);
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      console.log("Auth state set from registration");
       return { success: true, user };
     } catch (error) {
+      console.error("Registration error:", error);
       const message = error.response?.data?.message || "Registration failed";
       return { success: false, message };
     }
@@ -76,7 +83,6 @@ export const AuthProvider = ({ children }) => {
       setToken(token);
       setUser(user);
       localStorage.setItem("token", token);
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       console.log("Auth state set successfully");
       return { success: true, user };
     } catch (error) {
@@ -88,6 +94,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
+      console.log("Logging out...");
       await api.post("/api/auth/logout");
     } catch (error) {
       console.error("Logout error:", error.message);
@@ -95,7 +102,7 @@ export const AuthProvider = ({ children }) => {
       setToken(null);
       setUser(null);
       localStorage.removeItem("token");
-      delete api.defaults.headers.common["Authorization"];
+      console.log("Logout complete");
     }
   };
 
