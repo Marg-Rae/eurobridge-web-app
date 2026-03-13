@@ -6,12 +6,12 @@ import {
   updateStaffContent,
   addActivityToStaff,
 } from "../controllers/dashboard.controller.js";
-import { verifyToken } from "../middleware/auth.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
 // All routes require authentication
-router.use(verifyToken);
+router.use(auth);
 
 // STUDENT DASHBOARD ROUTES
 router.get("/student", getStudentContent);

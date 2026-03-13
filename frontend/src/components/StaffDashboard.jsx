@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext.jsx";
-import { api } from "../api/axios.js";
+import api from "../api/axios.js";
 import EditDashboardForm from "./EditDashboardForm.jsx";
 import Loading from "./Loading.jsx";
 
@@ -17,7 +17,7 @@ const StaffDashboard = () => {
     const fetchContent = async () => {
       try {
         setLoading(true);
-        const response = await api.get("/dashboard/staff");
+        const response = await api.get("/api/dashboard/staff");
         console.log("Staff content fetched:", response.data);
         setContent(response.data.content);
         setError(null);

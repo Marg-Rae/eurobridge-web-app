@@ -25,13 +25,9 @@ const Login = () => {
     const result = await login(email, password);
 
     if (result.success) {
-      // Redirect based on the returned user data (not state, which updates asynchronously)
+      // Redirect to unified dashboard
       console.log("Login successful, redirecting - user role:", result.user.role);
-      if (result.user.role === "staff") {
-        navigate("/dashboard/staff");
-      } else {
-        navigate("/dashboard/student");
-      }
+      navigate("/dashboard");
     } else {
       setError(result.message);
       setLoading(false);

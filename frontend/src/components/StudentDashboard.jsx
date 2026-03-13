@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext.jsx";
-import { api } from "../api/axios.js";
+import api from "../api/axios.js";
 import EditDashboardForm from "./EditDashboardForm.jsx";
 import Loading from "./Loading.jsx";
 
@@ -17,7 +17,7 @@ const StudentDashboard = () => {
     const fetchContent = async () => {
       try {
         setLoading(true);
-        const response = await api.get("/dashboard/student");
+        const response = await api.get("/api/dashboard/student");
         console.log("Student content fetched:", response.data);
         setContent(response.data.content);
         setError(null);

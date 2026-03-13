@@ -41,13 +41,9 @@ const Register = () => {
     const result = await register(name, email, password, userType);
 
     if (result.success) {
-      // Redirect based on the returned user data (not state, which updates asynchronously)
+      // Redirect to unified dashboard
       console.log("Registration successful, redirecting - user role:", result.user.role);
-      if (result.user.role === "staff") {
-        navigate("/dashboard/staff");
-      } else {
-        navigate("/dashboard/student");
-      }
+      navigate("/dashboard");
     } else {
       setError(result.message);
       setLoading(false);

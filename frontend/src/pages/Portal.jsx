@@ -45,11 +45,9 @@ const Portal = () => {
 
       setAuthStatus({ loading: false, error: "", success: successMessage });
 
-      // Redirect after 1.5 seconds using role from response
+      // Redirect after 1.5 seconds to unified dashboard
       setTimeout(() => {
-        const userRole = response.data.user?.role || userType;
-        const dashboardPath = userRole === "staff" ? "/staff-dashboard" : "/student-dashboard";
-        navigate(dashboardPath);
+        navigate("/dashboard");
       }, 1500);
     } catch (error) {
       const errorMessage = authMode === "register"

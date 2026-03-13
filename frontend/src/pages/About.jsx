@@ -14,6 +14,11 @@ const About = () => {
       name: "Bond N.",
       role: "Digital Marketing Assistant",
       image: "/media/bond-n.jpg"
+    },
+    {
+      name: "Kamala R.",
+      role: "Front Desk Assistant",
+      image: "/media/kamala-r.png"
     }
   ];
 

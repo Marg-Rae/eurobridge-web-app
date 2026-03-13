@@ -13,8 +13,7 @@ import Blog from "./pages/Blog.jsx";
 import BlogDetail from "./pages/BlogDetail.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
-import StudentDashboard from "./components/StudentDashboard.jsx";
-import StaffDashboard from "./components/StaffDashboard.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 
 const App = () => {
   return (
@@ -33,18 +32,10 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route
-              path="/dashboard/student"
+              path="/dashboard"
               element={
-                <ProtectedRoute allowedRoles={["student"]}>
-                  <StudentDashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/staff"
-              element={
-                <ProtectedRoute allowedRoles={["staff", "admin"]}>
-                  <StaffDashboard />
+                <ProtectedRoute>
+                  <Dashboard />
                 </ProtectedRoute>
               }
             />

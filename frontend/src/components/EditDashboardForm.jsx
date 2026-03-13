@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
-import { api } from "../api/axios";
+import { useAuth } from "../contexts/AuthContext.jsx";
+import api from "../api/axios.js";
 
 const EditDashboardForm = ({ userRole, currentContent, onSave, onCancel }) => {
   const { user } = useAuth();
@@ -126,7 +126,7 @@ const EditDashboardForm = ({ userRole, currentContent, onSave, onCancel }) => {
     setError(null);
 
     try {
-      const response = await api.post("/dashboard/student", studentForm);
+      const response = await api.post("/api/dashboard/student", studentForm);
       console.log("Student content saved:", response.data);
       if (onSave) onSave(response.data.content);
     } catch (err) {
@@ -143,7 +143,7 @@ const EditDashboardForm = ({ userRole, currentContent, onSave, onCancel }) => {
     setError(null);
 
     try {
-      const response = await api.post("/dashboard/staff", staffForm);
+      const response = await api.post("/api/dashboard/staff", staffForm);
       console.log("Staff content saved:", response.data);
       if (onSave) onSave(response.data.content);
     } catch (err) {
