@@ -2,12 +2,16 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
-const signToken = (user) =>
-  jwt.sign(
-    { email: user.email, role: user.role },
+const signToken = (user) => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET is not configured");
+  }
+  return jwt.sign(
+    { id: user._id.toString(), role: user.role },
     process.env.JWT_SECRET,
-    { subject: user._id.toString(), expiresIn: "7d" }
+    { expiresIn: "7d" }
   );
+};
 
 export const register = async (req, res) => {
   try {
@@ -29,7 +33,14 @@ export const register = async (req, res) => {
       password: hashedPassword,
       role: userType || "student"
     });
-    const token = signToken(user);
+    
+    let token;
+    try {
+      token = signToken(user);
+    } catch (tokenError) {
+      console.error("Token signing error:", tokenError.message);
+      return res.status(500).json({ message: "Failed to generate authentication token", error: tokenError.message });
+    }
 
     return res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
@@ -56,7 +67,14 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const token = signToken(user);
+    let token;
+    try {
+      token = signToken(user);
+    } catch (tokenError) {
+      console.error("Token signing error:", tokenError.message);
+      return res.status(500).json({ message: "Failed to generate authentication token", error: tokenError.message });
+    }
+
     return res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email, role: user.role } });
   } catch (error) {
     console.error("Login error:", error.message);

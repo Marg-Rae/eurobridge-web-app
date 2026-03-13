@@ -1,7 +1,29 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import app from "./app.js";
 import { connectDB } from "./config/db.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
+
+// Validate required environment variables
+if (!process.env.JWT_SECRET) {
+	console.error("❌ ERROR: JWT_SECRET is not set in .env file");
+	console.error("Please add: JWT_SECRET=your-secret-key-here");
+	process.exit(1);
+}
+
+if (!process.env.MONGODB_URI) {
+	console.error("❌ ERROR: MONGODB_URI is not set in .env file");
+	console.error("Please add: MONGODB_URI=your-mongodb-connection-string");
+	process.exit(1);
+}
+
+console.log("✅ Environment variables loaded successfully");
+console.log(`✅ JWT_SECRET is set (length: ${process.env.JWT_SECRET.length} characters)`);
 
 const PORT = process.env.PORT || 5000;
 
