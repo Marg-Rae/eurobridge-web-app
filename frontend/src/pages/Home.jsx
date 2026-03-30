@@ -82,7 +82,7 @@ const Home = () => {
               <p className="hero-caption-description">Gain the skills you need for international education, careers, and cultural connections.</p>
               <div className="hero-caption-buttons">
                 <Link to="/academics" className="button primary">Explore Courses</Link>
-                <Link to="/school-portal" className="button secondary">Apply Now</Link>
+                <Link to="/apply" className="button secondary">Apply Now</Link>
               </div>
             </div>
           </div>

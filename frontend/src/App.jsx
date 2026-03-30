@@ -9,6 +9,7 @@ import About from "./pages/About.jsx";
 import Academics from "./pages/Academics.jsx";
 import Elearning from "./pages/Elearning.jsx";
 import Portal from "./pages/Portal.jsx";
+import ApplicationForm from "./pages/ApplicationForm.jsx";
 import Blog from "./pages/Blog.jsx";
 import BlogDetail from "./pages/BlogDetail.jsx";
 import Login from "./pages/Login.jsx";
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
             <Route path="/elearning" element={<Elearning />} />
+            <Route path="/apply" element={<ApplicationForm />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/school-portal" element={<Portal />} />
