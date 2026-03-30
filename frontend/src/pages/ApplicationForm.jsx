@@ -95,8 +95,6 @@ const ApplicationForm = () => {
             <div className="success-message">
               <h2>✓ Application Submitted</h2>
               <p>{status.success}</p>
-              <p className="subtext">Application Deadline: <strong>March 19th, 2026</strong></p>
-              <p className="subtext">Classes Begin: <strong>March 23rd, 2026</strong></p>
             </div>
           </div>
         </section>
@@ -110,8 +108,6 @@ const ApplicationForm = () => {
         <div className="form-container">
           <div className="form-header">
             <h1>Application Form</h1>
-            <p className="form-subtitle">Application Deadline: <strong>19th March 2026</strong></p>
-            <p className="form-subtitle">Classes Begin: <strong>23rd March 2026</strong></p>
             <p className="form-description">Fill out the form below to apply for your preferred course at Eurobridge.</p>
           </div>
 
@@ -156,7 +152,7 @@ const ApplicationForm = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="+254 7XX XXX XXX"
                 />
               </div>
 
