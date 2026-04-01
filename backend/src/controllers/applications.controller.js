@@ -2,11 +2,11 @@ import Application from "../models/Application.js";
 
 export const createApplication = async (req, res) => {
   try {
-    const { fullName, email, phone, dateOfBirth, currentLevel, preferredCourse, motivation, experience, availability, agreeToTerms } = req.body;
+    const { fullName, email, phone, dateOfBirth, parentName, parentEmail, parentPhone, currentLevel, preferredCourse, motivation, experience, availability, agreeToTerms } = req.body;
 
     // Validate required fields
     if (!fullName || !email || !preferredCourse) {
-      return res.status(400).json({ message: "Full name, email, and preferred course are required" });
+      return res.status(400).json({ message: "Student full name, email, and preferred course are required" });
     }
 
     if (!agreeToTerms) {
@@ -25,6 +25,9 @@ export const createApplication = async (req, res) => {
       email,
       phone,
       dateOfBirth,
+      parentName,
+      parentEmail,
+      parentPhone,
       currentLevel,
       preferredCourse,
       motivation,

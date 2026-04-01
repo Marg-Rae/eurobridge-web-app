@@ -15,6 +15,9 @@ const ApplicationForm = () => {
     motivation: "",
     experience: "",
     availability: "",
+    parentName: "",
+    parentEmail: "",
+    parentPhone: "",
     agreeToTerms: false
   });
 
@@ -22,11 +25,12 @@ const ApplicationForm = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const courses = [
-    "Chinese for Global Trade",
-    "English for Leadership",
-    "Community Language Labs",
-    "General English",
-    "Business Communication"
+    "Chinese",
+    "German",
+    "French",
+    "English",
+    "Swahili",
+    "Kalenjin"
   ];
 
   const levels = ["Beginner", "Elementary", "Intermediate", "Upper-Intermediate", "Advanced"];
@@ -72,6 +76,9 @@ const ApplicationForm = () => {
             preferredCourse: "",
             motivation: "",
             experience: "",
+            parentName: "",
+            parentEmail: "",
+            parentPhone: "",
             availability: "",
             agreeToTerms: false
           });
@@ -114,12 +121,12 @@ const ApplicationForm = () => {
           {status.error && <ErrorMessage message={status.error} />}
 
           <form onSubmit={handleSubmit} className="application-form">
-            {/* Personal Information */}
+            {/* Student Information */}
             <fieldset className="form-fieldset">
-              <legend>Personal Information</legend>
+              <legend>Student Information</legend>
 
               <div className="form-group">
-                <label htmlFor="fullName">Full Name *</label>
+                <label htmlFor="fullName">Student Full Name *</label>
                 <input
                   type="text"
                   id="fullName"
@@ -127,12 +134,12 @@ const ApplicationForm = () => {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  placeholder="Your full name"
+                  placeholder="Student's full name"
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email Address *</label>
+                <label htmlFor="email">Student Email Address *</label>
                 <input
                   type="email"
                   id="email"
@@ -140,12 +147,12 @@ const ApplicationForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="your.email@example.com"
+                  placeholder="student.email@example.com"
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="phone">Phone Number</label>
+                <label htmlFor="phone">Student Phone Number</label>
                 <input
                   type="tel"
                   id="phone"
@@ -164,6 +171,47 @@ const ApplicationForm = () => {
                   name="dateOfBirth"
                   value={formData.dateOfBirth}
                   onChange={handleChange}
+                />
+              </div>
+            </fieldset>
+
+            {/* Parent/Guardian Information */}
+            <fieldset className="form-fieldset">
+              <legend>Parent/Guardian Information</legend>
+
+              <div className="form-group">
+                <label htmlFor="parentName">Parent/Guardian Full Name</label>
+                <input
+                  type="text"
+                  id="parentName"
+                  name="parentName"
+                  value={formData.parentName}
+                  onChange={handleChange}
+                  placeholder="Parent/Guardian's full name"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="parentEmail">Parent/Guardian Email Address</label>
+                <input
+                  type="email"
+                  id="parentEmail"
+                  name="parentEmail"
+                  value={formData.parentEmail}
+                  onChange={handleChange}
+                  placeholder="parent.email@example.com"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="parentPhone">Parent/Guardian Phone Number</label>
+                <input
+                  type="tel"
+                  id="parentPhone"
+                  name="parentPhone"
+                  value={formData.parentPhone}
+                  onChange={handleChange}
+                  placeholder="+254 7XX XXX XXX"
                 />
               </div>
             </fieldset>
