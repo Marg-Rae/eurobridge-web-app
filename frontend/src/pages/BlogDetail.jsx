@@ -13,7 +13,15 @@ const BlogDetail = () => {
     const fetchBlog = async () => {
       try {
         setLoading(true);
-        const apiUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+        
+        // Determine API base URL
+        let apiUrl = "http://localhost:5000"; // Default for local development
+        
+        // Use production URL for non-localhost environments
+        if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+          apiUrl = "https://eurobridge-web-app.onrender.com";
+        }
+        
         const response = await fetch(`${apiUrl}/api/blogs/${slug}`);
         if (!response.ok) {
           throw new Error("Blog post not found");
