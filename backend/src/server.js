@@ -7,7 +7,11 @@ import app from "./app.js";
 import { connectDB } from "./config/db.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.join(__dirname, "..", ".env") });
+
+// Load .env file only if it exists (not in production)
+if (process.env.NODE_ENV !== "production") {
+	dotenv.config({ path: path.join(__dirname, "..", ".env") });
+}
 
 // Validate required environment variables
 if (!process.env.JWT_SECRET) {
