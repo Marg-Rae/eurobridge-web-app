@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+import config from "./config.js";
 import coursesRoutes from "./routes/courses.routes.js";
 import blogsRoutes from "./routes/blogs.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
@@ -8,11 +8,9 @@ import authRoutes from "./routes/auth.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import applicationsRoutes from "./routes/applications.routes.js";
 
-dotenv.config();
-
 const app = express();
 
-// CORS Configuration
+// CORS Configuration - use centralized config
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
@@ -20,7 +18,8 @@ const allowedOrigins = [
   "http://127.0.0.1:5174",
   "https://eurobridge-web-app.netlify.app",
   "https://eurobridge-web-app.onrender.com",
-  process.env.CORS_ORIGIN // Allow custom origin from env var
+  "https://eurobridge-web-app-2.onrender.com",
+  config.CORS_ORIGIN // Allow custom origin from env var
 ].filter(Boolean); // Remove undefined entries
 
 app.use(cors({

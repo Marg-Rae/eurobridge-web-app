@@ -1,39 +1,24 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
-import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
 import app from "./app.js";
 import { connectDB } from "./config/db.js";
+import config, { validateConfig, logConfigStatus } from "./config.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// Load .env file only if it exists (not in production)
-if (process.env.NODE_ENV !== "production") {
-	dotenv.config({ path: path.join(__dirname, "..", ".env") });
-}
-
-// Validate required environment variables
-if (!process.env.JWT_SECRET) {
-	console.error("❌ ERROR: JWT_SECRET is not set in .env file");
-	console.error("Please add: JWT_SECRET=your-secret-key-here");
+// Validate configuration before starting anything
+try {
+	validateConfig();
+	logConfigStatus();
+} catch (error) {
+	console.error("❌ Server startup failed due to configuration error");
+	console.error(error.message);
 	process.exit(1);
 }
 
-if (!process.env.MONGODB_URI) {
-	console.error("❌ ERROR: MONGODB_URI is not set in .env file");
-	console.error("Please add: MONGODB_URI=your-mongodb-connection-string");
-	process.exit(1);
-}
-
-console.log("✅ Environment variables loaded successfully");
-console.log(`✅ JWT_SECRET is set (length: ${process.env.JWT_SECRET.length} characters)`);
-
-const PORT = process.env.PORT || 5000;
+const PORT = config.PORT;
 
 const startServer = async () => {
 	try {
-		// Set MONGODB_URI in your environment before starting the server.
+		// Attempt to connect to MongoDB
 		await connectDB();
 
 		// Create HTTP server
@@ -42,7 +27,7 @@ const startServer = async () => {
 		// Initialize Socket.io with CORS
 		const io = new Server(httpServer, {
 			cors: {
-				origin: process.env.CORS_ORIGIN || "*",
+				origin: config.CORS_ORIGIN,
 				methods: ["GET", "POST"]
 			}
 		});
@@ -64,10 +49,11 @@ const startServer = async () => {
 		});
 
 		httpServer.listen(PORT, () => {
-			console.log(`API running on port ${PORT}`);
+			console.log(`✅ API running on port ${PORT}`);
+			console.log(`🌍 Environment: ${config.NODE_ENV}`);
 		});
 	} catch (error) {
-		console.error("Failed to start server:", error.message);
+		console.error("❌ Failed to start server:", error.message);
 		process.exit(1);
 	}
 };

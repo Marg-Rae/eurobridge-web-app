@@ -1,41 +1,83 @@
 import mongoose from "mongoose";
+import config from "../config.js";
 
+/**
+ * Connect to MongoDB Atlas
+ * @throws {Error} If connection fails
+ */
 export const connectDB = async () => {
-  const uri = process.env.MONGODB_URI;
+  const uri = config.MONGODB_URI;
+  const dbName = config.MONGODB_DB_NAME;
 
-  // Provide MONGODB_URI and optional MONGODB_DB_NAME via env vars.
   if (!uri) {
-    throw new Error("MONGODB_URI is not set");
+    throw new Error("MONGODB_URI is not configured");
   }
 
   try {
-    console.log("Attempting to connect to MongoDB...");
-    // Log connection string (masked password)
-    const maskedUri = uri.replace(/:([^@]+)@/, ":****@");
-    console.log("Connection string:", maskedUri);
+    console.log("\n🔗 Connecting to MongoDB...");
     
+    // Log connection attempt (masked password)
+    const maskedUri = uri.replace(/:([^@]+)@/, ":****@");
+    console.log(`   URI: ${maskedUri}`);
+    console.log(`   Database: ${dbName}`);
+    
+    // Attempt connection with timeout
     await mongoose.connect(uri, {
-      dbName: process.env.MONGODB_DB_NAME || "eurobridge"
+      dbName: dbName,
+      serverSelectionTimeoutMS: 10000, // 10 second timeout
+      socketTimeoutMS: 45000,
     });
 
-    console.log("✅ MongoDB connected successfully!");
-  } catch (error) {
-    console.error("❌ MongoDB connection failed:");
-    console.error("Error message:", error.message);
+    console.log("✅ MongoDB Atlas connected successfully!");
+    console.log(`   Status: ${mongoose.connection.readyState === 1 ? "Connected" : "Connecting"}`);
     
-    // Check if it's a network error
-    if (error.message.includes("Could not connect to any servers")) {
-      console.error("\n⚠️  This usually means:");
-      console.error("  1. Your IP is not whitelisted in MongoDB Atlas");
-      console.error("  2. Your network/firewall is blocking the connection");
-      console.error("  3. The database credentials are incorrect");
-      console.error("\nTo fix:");
-      console.error("  - Go to: https://cloud.mongodb.com");
-      console.error("  - Click Cluster0 → Security → Network Access");
-      console.error("  - Add 0.0.0.0/0 and wait 2-3 minutes");
+  } catch (error) {
+    console.error("\n❌ MongoDB Connection Failed");
+    console.error("   Error:", error.message);
+    
+    // Provide helpful troubleshooting information
+    if (error.message.includes("Could not connect to any servers") || 
+        error.message.includes("ECONNREFUSED") ||
+        error.message.includes("getaddrinfo")) {
+      
+      console.error("\n⚠️  Possible causes:");
+      console.error("   1. IP address not whitelisted in MongoDB Atlas");
+      console.error("   2. MongoDB Atlas cluster is paused");
+      console.error("   3. Network connectivity issues");
+      console.error("\n💡 Solutions:");
+      console.error("   1. Go to https://cloud.mongodb.com");
+      console.error("   2. Select your cluster → Security → Network Access");
+      console.error("   3. Add 0.0.0.0/0 (allows all IP addresses)");
+      console.error("   4. Wait 2-3 minutes for changes to take effect");
+      
+      if (process.env.NODE_ENV === "production") {
+        console.error("\n📌 For Render deployments:");
+        console.error("   - Render uses dynamic IPs, so use 0.0.0.0/0");
+        console.error("   - Update MongoDB whitelist and wait 2-3 minutes");
+        console.error("   - Then trigger a redeploy on Render");
+      }
     }
     
+    if (error.message.includes("authentication failed")) {
+      console.error("\n⚠️  Authentication Error:");
+      console.error("   Your MongoDB credentials are incorrect");
+      console.error("   Check MONGODB_URI environment variable");
+    }
+    
+    // Re-throw error to prevent server startup with broken database connection
     throw error;
+  }
+};
+
+/**
+ * Disconnect from MongoDB
+ */
+export const disconnectDB = async () => {
+  try {
+    await mongoose.disconnect();
+    console.log("✅ MongoDB disconnected");
+  } catch (error) {
+    console.error("❌ Error disconnecting from MongoDB:", error.message);
   }
 };
 
