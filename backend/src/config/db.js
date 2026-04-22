@@ -30,8 +30,7 @@ export const connectDB = async () => {
       maxPoolSize: 5, // Limit connection pool size for free tier
       minPoolSize: 1,
       maxIdleTimeMS: 30000,
-      bufferCommands: false, // Disable mongoose buffering
-      bufferMaxEntries: 0 // Disable mongoose buffering
+      bufferCommands: false // Disable mongoose buffering
     });
 
     console.log("✅ MongoDB Atlas connected successfully!");
