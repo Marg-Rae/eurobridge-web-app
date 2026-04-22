@@ -21,11 +21,17 @@ export const connectDB = async () => {
     console.log(`   URI: ${maskedUri}`);
     console.log(`   Database: ${dbName}`);
     
-    // Attempt connection with timeout
+    // Attempt connection with production-optimized settings
     await mongoose.connect(uri, {
       dbName: dbName,
-      serverSelectionTimeoutMS: 10000, // 10 second timeout
-      socketTimeoutMS: 45000,
+      serverSelectionTimeoutMS: 30000, // 30 second timeout for Render
+      socketTimeoutMS: 75000, // 75 second socket timeout
+      connectTimeoutMS: 30000, // 30 second connection timeout
+      maxPoolSize: 5, // Limit connection pool size for free tier
+      minPoolSize: 1,
+      maxIdleTimeMS: 30000,
+      bufferCommands: false, // Disable mongoose buffering
+      bufferMaxEntries: 0 // Disable mongoose buffering
     });
 
     console.log("✅ MongoDB Atlas connected successfully!");

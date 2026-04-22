@@ -12,6 +12,8 @@ services:
       - key: JWT_SECRET
         value: 7f384e974b9fffb7ceca86f46d36819e0647d8dc53c14322fc766ff546e331e8
       - key: MONGODB_URI
-        value: mongodb+srv://eurobridge_db_user:2kvG03uD2mdun1Rv@eurobridgelanguageinsti.ufjkdkv.mongodb.net/?appName=EurobridgeLanguageInstitute
+        value: mongodb+srv://eurobridge_db_user:2kvG03uD2mdun1Rv@eurobridgelanguageinsti.ufjkdkv.mongodb.net/eurobridge?retryWrites=true&w=majority&appName=EurobridgeLanguageInstitute
       - key: MONGODB_DB_NAME
         value: eurobridge
+      - key: CORS_ORIGIN
+        value: https://eurobridge-web-app.netlify.app

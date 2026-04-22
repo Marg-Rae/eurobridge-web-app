@@ -48,10 +48,26 @@ const startServer = async () => {
 			});
 		});
 
-		httpServer.listen(PORT, () => {
+		httpServer.listen(PORT, '0.0.0.0', () => {
 			console.log(`✅ API running on port ${PORT}`);
 			console.log(`🌍 Environment: ${config.NODE_ENV}`);
 		});
+
+		// Graceful shutdown handler
+		process.on('SIGTERM', () => {
+			console.log('SIGTERM received, shutting down gracefully');
+			httpServer.close(() => {
+				console.log('Process terminated');
+			});
+		});
+
+		process.on('SIGINT', () => {
+			console.log('SIGINT received, shutting down gracefully');
+			httpServer.close(() => {
+				console.log('Process terminated');
+			});
+		});
+
 	} catch (error) {
 		console.error("❌ Failed to start server:", error.message);
 		process.exit(1);
