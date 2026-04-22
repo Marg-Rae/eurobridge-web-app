@@ -59,6 +59,11 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Simple test endpoint
+app.get('/test', (req, res) => {
+  res.json({ message: 'Test endpoint working' });
+});
+
 app.use("/api/courses", coursesRoutes);
 app.use("/api/blogs", blogsRoutes);
 app.use("/api/contact", contactRoutes);
