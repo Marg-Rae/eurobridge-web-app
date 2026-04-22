@@ -108,3 +108,21 @@ export const testConnection = async () => {
     return false;
   }
 };
+    
+    // Re-throw error to prevent server startup with broken database connection
+    throw error;
+  }
+};
+
+/**
+ * Disconnect from MongoDB
+ */
+export const disconnectDB = async () => {
+  try {
+    await mongoose.disconnect();
+    console.log("✅ MongoDB disconnected");
+  } catch (error) {
+    console.error("❌ Error disconnecting from MongoDB:", error.message);
+  }
+};
+
