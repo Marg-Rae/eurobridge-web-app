@@ -12,7 +12,7 @@ services:
       - key: JWT_SECRET
         value: 7f384e974b9fffb7ceca86f46d36819e0647d8dc53c14322fc766ff546e331e8
       - key: MONGODB_URI
-        value: mongodb+srv://eurobridge_db_user:2kvG03uD2mdun1Rv@eurobridgelanguageinsti.ufjkdkv.mongodb.net/eurobridge?retryWrites=true&w=majority&authSource=admin&ssl=true&serverSelectionTimeoutMS=30000&appName=EurobridgeLanguageInstitute
+        value: mongodb+srv://eurobridge_db_user:saHypLYVVnDG9zzR@eurobridgelanguageinsti.ufjkdkv.mongodb.net/?appName=EurobridgeLanguageInstitute
       - key: MONGODB_DB_NAME
         value: eurobridge
       - key: CORS_ORIGIN
