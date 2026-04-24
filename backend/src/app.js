@@ -17,6 +17,7 @@ const allowedOrigins = [
   "http://127.0.0.1:5173",
   "http://127.0.0.1:5174",
   "https://eurobridge-web-app.netlify.app",
+  /\.netlify\.app$/, // Allow all Netlify domains
   "https://eurobridge-web-app.onrender.com",
   "https://eurobridge-web-app-2.onrender.com",
   config.CORS_ORIGIN // Allow custom origin from env var
@@ -27,9 +28,20 @@ app.use(cors({
     // Allow requests with no origin (mobile apps, curl requests, etc)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.includes(origin) || process.env.NODE_ENV === "development") {
+    // Check if origin matches any allowed pattern
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (typeof allowed === 'string') {
+        return allowed === origin;
+      } else if (allowed instanceof RegExp) {
+        return allowed.test(origin);
+      }
+      return false;
+    });
+    
+    if (isAllowed || process.env.NODE_ENV === "development") {
       callback(null, true);
     } else {
+      console.log(`CORS blocked origin: ${origin}`);
       callback(new Error("Not allowed by CORS"));
     }
   },
