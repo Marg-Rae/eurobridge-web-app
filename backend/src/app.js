@@ -18,6 +18,7 @@ const allowedOrigins = [
   "http://127.0.0.1:5174",
   "https://eurobridge-web-app.netlify.app",
   /\.netlify\.app$/, // Allow all Netlify domains
+  "https://eurobridgelanguageinstitute.com", // Custom domain
   "https://eurobridge-web-app.onrender.com",
   "https://eurobridge-web-app-2.onrender.com",
   config.CORS_ORIGIN // Allow custom origin from env var
