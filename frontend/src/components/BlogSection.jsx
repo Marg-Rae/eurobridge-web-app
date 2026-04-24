@@ -15,7 +15,7 @@ const BlogSection = () => {
         
         // Use production URL for non-localhost environments
         if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-          apiUrl = "https://eurobridge-web-app.onrender.com";
+          apiUrl = "https://eurobridge-web-app-2.onrender.com";
         }
         
         const response = await fetch(`${apiUrl}/api/blogs`);

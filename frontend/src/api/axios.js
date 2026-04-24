@@ -5,7 +5,7 @@ let baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 
 // Override with production URL for deployed apps
 if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-  baseURL = import.meta.env.VITE_API_BASE_URL || "https://eurobridge-web-app.onrender.com";
+  baseURL = import.meta.env.VITE_API_BASE_URL || "https://eurobridge-web-app-2.onrender.com";
 }
 
 const api = axios.create({
