@@ -40,7 +40,8 @@ app.use(cors({
     });
     
     if (isAllowed || process.env.NODE_ENV === "development") {
-      callback(null, true);
+      // Explicitly return the origin to set the Access-Control-Allow-Origin header
+      callback(null, origin);
     } else {
       console.log(`CORS blocked origin: ${origin}`);
       callback(new Error("Not allowed by CORS"));
