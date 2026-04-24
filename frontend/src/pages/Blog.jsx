@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading.jsx";
 import ErrorMessage from "../components/ErrorMessage.jsx";
+import { apiCall, API_ENDPOINTS } from "../api/config.js";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -12,20 +13,9 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        
-        // Determine API base URL
-        let apiUrl = "http://localhost:5000"; // Default for local development
-        
-        // Use production URL for non-localhost environments
-        if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-          apiUrl = "https://eurobridge-web-app-2.onrender.com";
-        }
-        
-        const response = await fetch(`${apiUrl}/api/blogs`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch blogs");
-        }
-        const data = await response.json();
+
+        // Use centralized API configuration
+        const data = await apiCall(API_ENDPOINTS.BLOGS);
         setBlogs(data);
         setError(null);
       } catch (err) {

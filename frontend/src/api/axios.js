@@ -1,43 +1,53 @@
 import axios from "axios";
+import { API_BASE_URL } from "./config.js";
 
-// Determine API base URL from environment variables or window.location
-let baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-
-// Override with production URL for deployed apps
-if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-  baseURL = import.meta.env.VITE_API_BASE_URL || "https://eurobridge-web-app-2.onrender.com";
-}
-
+// Create axios instance with centralized base URL
 const api = axios.create({
-  baseURL: baseURL,
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Request interceptor to attach token
+// Request interceptor to attach token and log requests
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log("Request interceptor - Token attached to:", config.url);
+      console.log("🔑 Request with token:", config.method?.toUpperCase(), config.url);
     } else {
-      console.log("Request interceptor - No token for:", config.url);
+      console.log("📤 Request without token:", config.method?.toUpperCase(), config.url);
     }
     return config;
   },
   (error) => {
+    console.error("❌ Request interceptor error:", error);
     return Promise.reject(error);
   }
 );
 
-// Response interceptor to handle errors
+// Response interceptor to handle errors and log responses
 api.interceptors.response.use(
   (response) => {
-    console.log("Response OK:", response.config.url, response.status);
+    console.log("✅ Response OK:", response.config.method?.toUpperCase(), response.config.url, response.status);
     return response;
   },
+  (error) => {
+    console.error("❌ Response Error:", error.config?.method?.toUpperCase(), error.config?.url, error.response?.status, error.message);
+
+    // Handle 401 errors (token expired/invalid)
+    if (error.response?.status === 401) {
+      console.log("🚪 401 Unauthorized - clearing token and redirecting to login");
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+export default api;
   (error) => {
     console.log("Response Error:", error.config?.url, error.response?.status);
     if (error.response?.status === 401) {

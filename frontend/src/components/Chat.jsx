@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
+import { API_BASE_URL } from "../api/config.js";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -9,15 +10,19 @@ const Chat = () => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    // Connect to socket.io server
-    const socketUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-    const newSocket = io(socketUrl);
+    // Connect to socket.io server using centralized API URL
+    console.log("🔌 Connecting to Socket.io server:", API_BASE_URL);
+    const newSocket = io(API_BASE_URL);
 
     newSocket.on("connect", () => {
+      console.log("🔌 Socket.io connected");
       setConnectionStatus("connected");
     });
 
     newSocket.on("disconnect", () => {
+      console.log("🔌 Socket.io disconnected");
+      setConnectionStatus("disconnected");
+    });
       setConnectionStatus("disconnected");
     });
 

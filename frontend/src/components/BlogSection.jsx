@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Loading from "./Loading.jsx";
+import { apiCall, API_ENDPOINTS } from "../api/config.js";
 
 const BlogSection = () => {
   const [blogs, setBlogs] = useState([]);
@@ -10,19 +11,9 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchLatestBlogs = async () => {
       try {
-        // Determine API base URL (same logic as axios.js)
-        let apiUrl = "http://localhost:5000"; // Default for local development
-        
-        // Use production URL for non-localhost environments
-        if (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
-          apiUrl = "https://eurobridge-web-app-2.onrender.com";
-        }
-        
-        const response = await fetch(`${apiUrl}/api/blogs`);
-        if (response.ok) {
-          const data = await response.json();
-          setBlogs(data.slice(0, 3));
-        }
+        // Use centralized API configuration
+        const data = await apiCall(API_ENDPOINTS.BLOGS);
+        setBlogs(data.slice(0, 3));
       } catch (err) {
         console.error("Error fetching blogs:", err);
       } finally {
