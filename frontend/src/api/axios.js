@@ -48,16 +48,3 @@ api.interceptors.response.use(
 );
 
 export default api;
-  (error) => {
-    console.log("Response Error:", error.config?.url, error.response?.status);
-    if (error.response?.status === 401) {
-      // Token is invalid or expired
-      console.log("401 Unauthorized - clearing token and redirecting to login");
-      localStorage.removeItem("token");
-      window.location.href = "/login";
-    }
-    return Promise.reject(error);
-  }
-);
-
-export default api;
