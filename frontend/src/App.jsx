@@ -24,6 +24,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            {/* Courses pages are not present in this build; remove routes until added */}
             <Route path="/about" element={<About />} />
             <Route path="/academics" element={<Academics />} />
             <Route path="/elearning" element={<Elearning />} />

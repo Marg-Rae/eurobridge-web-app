@@ -49,6 +49,15 @@ const StaffDashboard = () => {
     navigate("/");
   };
 
+  const handleEditClick = () => {
+    // Only staff and admins can edit staff dashboard
+    if (user?.role !== "staff" && user?.role !== "admin") {
+      setError("Only staff and admins can edit the staff dashboard.");
+      return;
+    }
+    setIsEditing(true);
+  };
+
   const handleSaveContent = (updatedContent) => {
     setContent(updatedContent);
     setIsEditing(false);
@@ -90,7 +99,7 @@ const StaffDashboard = () => {
           <p className="dashboard-subtitle">Staff Dashboard</p>
         </div>
         <div className="header-buttons">
-          <button onClick={() => setIsEditing(true)} className="btn-edit">
+          <button onClick={handleEditClick} className="btn-edit">
             Edit Dashboard
           </button>
           <button onClick={handleLogout} className="btn-logout">

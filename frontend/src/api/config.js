@@ -14,8 +14,8 @@ const getApiBaseUrl = () => {
   }
 
   // Production fallback (should not be used if env var is set)
-  console.warn("VITE_API_BASE_URL not set, using fallback URL");
-  return "https://eurobridge-web-app-2.onrender.com";
+  console.warn("VITE_API_BASE_URL not set, using local backend fallback URL");
+  return "http://localhost:5000";
 };
 
 // Export the base URL

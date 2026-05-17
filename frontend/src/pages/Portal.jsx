@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../api/axios.js";
+import { useAuth } from "../contexts/AuthContext.jsx";
 import Loading from "../components/Loading.jsx";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const Portal = () => {
   const navigate = useNavigate();
+  const { login, register } = useAuth();
   const [step, setStep] = useState("role-select"); // "role-select", "auth"
   const [userType, setUserType] = useState(""); // "student" or "staff"
   const [authMode, setAuthMode] = useState("signin"); // "signin" or "register"
@@ -28,15 +29,13 @@ const Portal = () => {
     setAuthStatus({ loading: true, error: "", success: "" });
 
     try {
-      const payload = authMode === "register"
-        ? { ...authForm, userType }
-        : { email: authForm.email, password: authForm.password };
-      
-      const endpoint = authMode === "register" ? "/api/auth/register" : "/api/auth/login";
-      const response = await api.post(endpoint, payload);
-      
-      if (response.data.token) {
-        localStorage.setItem("authToken", response.data.token);
+      const result = authMode === "register"
+        ? await register(authForm.name, authForm.email, authForm.password, userType)
+        : await login(authForm.email, authForm.password);
+
+      if (!result.success) {
+        setAuthStatus({ loading: false, error: result.message, success: "" });
+        return;
       }
 
       const successMessage = authMode === "register"
@@ -44,11 +43,7 @@ const Portal = () => {
         : "Signed in successfully. Redirecting to your dashboard...";
 
       setAuthStatus({ loading: false, error: "", success: successMessage });
-
-      // Redirect after 1.5 seconds to unified dashboard
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1500);
+      navigate("/dashboard");
     } catch (error) {
       const errorMessage = authMode === "register"
         ? error.response?.data?.message || "Unable to register. Please try again."

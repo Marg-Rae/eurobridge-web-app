@@ -7,49 +7,42 @@ import contactRoutes from "./routes/contact.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import applicationsRoutes from "./routes/applications.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 const app = express();
 
 // CORS Configuration - use centralized config
+// Allow localhost on any port plus configured production origins
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://127.0.0.1:5173",
-  "http://127.0.0.1:5174",
-  "https://eurobridge-web-app.netlify.app",
-  /\.netlify\.app$/, // Allow all Netlify domains
-  "https://eurobridgelanguageinstitute.com", // Custom domain
+  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/,
+  /\.netlify\.app$/,
+  "https://eurobridgelanguageinstitute.com",
   "https://eurobridge-web-app.onrender.com",
   "https://eurobridge-web-app-2.onrender.com",
-  config.CORS_ORIGIN // Allow custom origin from env var
-].filter(Boolean); // Remove undefined entries
+  config.CORS_ORIGIN
+].filter(Boolean);
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, curl requests, etc)
     if (!origin) return callback(null, true);
-    
-    // Check if origin matches any allowed pattern
-    const isAllowed = allowedOrigins.some(allowed => {
-      if (typeof allowed === 'string') {
-        return allowed === origin;
-      } else if (allowed instanceof RegExp) {
-        return allowed.test(origin);
-      }
+
+    const isAllowed = allowedOrigins.some((allowed) => {
+      if (typeof allowed === 'string') return allowed === origin;
+      if (allowed instanceof RegExp) return allowed.test(origin);
       return false;
     });
-    
-    if (isAllowed || process.env.NODE_ENV === "development") {
-      // Explicitly return the origin to set the Access-Control-Allow-Origin header
-      callback(null, origin);
-    } else {
-      console.log(`CORS blocked origin: ${origin}`);
-      callback(new Error("Not allowed by CORS"));
+
+    if (isAllowed || process.env.NODE_ENV === 'development') {
+      // Return the requesting origin so browser receives Access-Control-Allow-Origin
+      return callback(null, origin);
     }
+
+    console.log(`CORS blocked origin: ${origin}`);
+    return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
@@ -84,6 +77,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/applications", applicationsRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });

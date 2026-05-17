@@ -45,6 +45,15 @@ const StudentDashboard = () => {
     navigate("/");
   };
 
+  const handleEditClick = () => {
+    // Only students can edit their own dashboard
+    if (user?.role !== "student") {
+      setError("Only students can edit the student dashboard.");
+      return;
+    }
+    setIsEditing(true);
+  };
+
   const handleSaveContent = (updatedContent) => {
     setContent(updatedContent);
     setIsEditing(false);
@@ -86,7 +95,7 @@ const StudentDashboard = () => {
           <p className="dashboard-subtitle">Student Dashboard</p>
         </div>
         <div className="header-buttons">
-          <button onClick={() => setIsEditing(true)} className="btn-edit">
+          <button onClick={handleEditClick} className="btn-edit">
             Edit Dashboard
           </button>
           <button onClick={handleLogout} className="btn-logout">

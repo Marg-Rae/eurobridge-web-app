@@ -1,12 +1,17 @@
 import { useAuth } from "../contexts/AuthContext.jsx";
 import StudentDashboard from "./StudentDashboard.jsx";
 import StaffDashboard from "./StaffDashboard.jsx";
+import AdminDashboard from "./AdminDashboard.jsx";
 
 const Dashboard = () => {
   const { user } = useAuth();
 
   // Show appropriate dashboard based on user role
-  if (user?.role === "staff" || user?.role === "admin") {
+  if (user?.role === "admin") {
+    return <AdminDashboard />;
+  }
+
+  if (user?.role === "staff") {
     return <StaffDashboard />;
   }
 

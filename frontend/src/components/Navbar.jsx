@@ -1,11 +1,14 @@
 import { useEffect, useRef } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext.jsx";
 import { useLanguage } from "../contexts/LanguageContext.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 
 const Navbar = () => {
   const isHidden = useRef(false);
   const lastScrollY = useRef(0);
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -28,13 +31,24 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
   return (
     <header className="site-header">
       <div className="header-top">
         <LanguageSwitcher />
-        <Link to="/school-portal" className="portal-button">
-          School Portal
-        </Link>
+        {user ? (
+          <button className="portal-button" onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <Link to="/school-portal" className="portal-button">
+            School Portal
+          </Link>
+        )}
       </div>
       <div className="header-bottom">
         <div className="brand-wrap">
@@ -52,13 +66,12 @@ const Navbar = () => {
           <NavLink to="/" end>
             {t("nav.home")}
           </NavLink>
+          <NavLink to="/courses">Courses</NavLink>
           <NavLink to="/about">{t("nav.about")}</NavLink>
-          <NavLink to="/academics">{t("nav.academics")}</NavLink>
-          <NavLink to="/elearning">{t("nav.elearning")}</NavLink>
           <NavLink to="/blog">Blog</NavLink>
+          {user && <NavLink to="/dashboard">Dashboard</NavLink>}
         </nav>
       </div>
-
     </header>
   );
 };
