@@ -8,6 +8,7 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
+    "build": "echo 'No build required for Express'",
     "dev": "nodemon src/server.js",
     "start": "node ./src/server.js"
   },
