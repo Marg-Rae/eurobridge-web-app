@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { API_ENDPOINTS } from "../api/config.js";
 
 const Academics = () => {
-  const programs = [
+  const [programs, setPrograms] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fallback programs if API is not available
+  const defaultPrograms = [
     {
       name: "German Language",
       level: "A1-C2",
@@ -51,6 +58,49 @@ const Academics = () => {
       icon: "🏛️"
     }
   ];
+
+  // Fetch courses from API
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(API_ENDPOINTS.COURSES);
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch courses: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (Array.isArray(data) && data.length > 0) {
+          // Convert API courses to program format with icons
+          const formattedPrograms = data.map((course, index) => ({
+            name: course.title,
+            level: course.level,
+            description: course.description,
+            features: course.features || ["Professional instruction", "Certified program"],
+            duration: course.duration,
+            icon: ["🇩🇪", "🇨🇳", "🇬🇧", "🇫🇷", "🇰🇪", "🏛️"][index % 6],
+            price: course.price
+          }));
+          setPrograms(formattedPrograms);
+        } else {
+          // Use default programs if no data returned
+          setPrograms(defaultPrograms);
+        }
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+        setError(err.message);
+        // Fall back to default programs on error
+        setPrograms(defaultPrograms);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, []);
 
   const features = [
     {
@@ -109,33 +159,38 @@ const Academics = () => {
             <p>Six comprehensive pathways to fluency with professional certification</p>
           </div>
 
-          <div className="programs-grid">
-            {programs.map((program, index) => (
-              <div key={index} className="program-card-enhanced">
-                <div className="program-icon">{program.icon}</div>
-                <h3>{program.name}</h3>
-                <span className="program-level">CEFR Level: {program.level}</span>
-                <p className="program-description">{program.description}</p>
-                
-                <div className="program-features">
-                  <h4>Key Features:</h4>
-                  <ul>
-                    {program.features.map((feature, i) => (
-                      <li key={i}>✓ {feature}</li>
-                    ))}
-                  </ul>
-                </div>
+          {loading && <p className="loading-message" style={{textAlign: 'center', padding: '2rem'}}>Loading courses...</p>}
+          {error && <p className="error-message" style={{textAlign: 'center', padding: '2rem', color: 'red'}}>Error loading courses. Showing default programs.</p>}
+          
+          {!loading && (
+            <div className="programs-grid">
+              {programs.map((program, index) => (
+                <div key={index} className="program-card-enhanced">
+                  <div className="program-icon">{program.icon}</div>
+                  <h3>{program.name}</h3>
+                  <span className="program-level">CEFR Level: {program.level}</span>
+                  <p className="program-description">{program.description}</p>
+                  
+                  <div className="program-features">
+                    <h4>Key Features:</h4>
+                    <ul>
+                      {program.features.map((feature, i) => (
+                        <li key={i}>✓ {feature}</li>
+                      ))}
+                    </ul>
+                  </div>
 
-                <div className="program-meta">
-                  <span className="program-duration">⏱️ {program.duration}</span>
-                </div>
+                  <div className="program-meta">
+                    <span className="program-duration">⏱️ {program.duration}</span>
+                  </div>
 
-                <Link to={`/school-portal?lang=${program.name.toLowerCase()}`} className="button primary btn-block">
-                  Explore Course
-                </Link>
-              </div>
-            ))}
-          </div>
+                  <Link to={`/school-portal?lang=${program.name.toLowerCase()}`} className="button primary btn-block">
+                    Explore Course
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
 
         {/* Why Choose Eurobridge */}
