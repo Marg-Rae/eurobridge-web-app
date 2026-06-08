@@ -4426,6 +4426,8 @@ textarea {
 }
 
 .bento-item img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -4538,7 +4540,8 @@ textarea {
   }
 
   .bento-feature,
-  .bento-portrait {
+  .bento-portrait,
+  .bento-square {
     grid-column: auto;
     min-height: 240px;
   }
@@ -4576,6 +4579,8 @@ textarea {
 }
 
 .photo-strip-item img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
