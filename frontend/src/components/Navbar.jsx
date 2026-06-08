@@ -67,6 +67,7 @@ const Navbar = () => {
             {t("nav.home")}
           </NavLink>
           <NavLink to="/academics">Courses</NavLink>
+          <NavLink to="/elearning">E-Learning</NavLink>
           <NavLink to="/about">{t("nav.about")}</NavLink>
           <NavLink to="/blog">Blog</NavLink>
           {user && <NavLink to="/dashboard">Dashboard</NavLink>}

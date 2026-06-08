@@ -4201,6 +4201,222 @@ textarea {
   }
 }
 
+/* ==============================
+   E-LEARNING GATEWAY PAGE
+   ============================== */
 
+.elearning-gateway-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 4rem 6vw 3rem;
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-dark) 100%);
+  color: #fff;
+}
 
+.elearning-gateway-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
 
+.elearning-badge {
+  display: inline-block;
+  background: rgba(201, 150, 74, 0.25);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.elearning-gateway-hero h1 {
+  color: #fff;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.elearning-gateway-hero .hero-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.elearning-hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+/* Moodle browser mock */
+.elearning-gateway-hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.moodle-preview-card {
+  background: #1e293b;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 420px;
+}
+
+.moodle-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #0f172a;
+}
+
+.moodle-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.moodle-dot.red    { background: #ef4444; }
+.moodle-dot.yellow { background: #f59e0b; }
+.moodle-dot.green  { background: #22c55e; }
+
+.moodle-preview-url {
+  margin-left: 0.5rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.45);
+  font-family: monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.moodle-preview-body {
+  display: flex;
+  gap: 0;
+  height: 200px;
+}
+
+.moodle-preview-sidebar {
+  width: 60px;
+  background: #1a2744;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.moodle-preview-item {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.15);
+}
+
+.moodle-preview-item.active {
+  background: var(--accent);
+}
+
+.moodle-preview-main {
+  flex: 1;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.moodle-preview-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.12);
+}
+.moodle-preview-bar.wide   { width: 90%; }
+.moodle-preview-bar.medium { width: 65%; }
+.moodle-preview-bar.short  { width: 40%; }
+
+.moodle-preview-progress {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+  margin-top: 0.4rem;
+}
+
+.moodle-preview-progress-fill {
+  height: 100%;
+  width: 68%;
+  background: linear-gradient(90deg, var(--accent), #e8b86d);
+  border-radius: 4px;
+}
+
+/* Steps */
+.elearning-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.elearning-step {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #ffffff, #fff8f0);
+  border-radius: 1.2rem;
+  padding: 1.6rem;
+  box-shadow: 0 8px 24px var(--shadow);
+  border: 1px solid rgba(201, 150, 74, 0.15);
+}
+
+.elearning-step-number {
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elearning-step h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.elearning-step p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .elearning-gateway-hero {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 5vw 2rem;
+    text-align: center;
+  }
+
+  .elearning-hero-actions {
+    justify-content: center;
+  }
+
+  .elearning-gateway-hero-visual {
+    display: none;
+  }
+
+  .elearning-steps {
+    grid-template-columns: 1fr;
+  }
+}
