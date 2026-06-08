@@ -63,13 +63,11 @@ const Navbar = () => {
           </div>
         </div>
         <nav className="nav-links">
-          <NavLink to="/" end>
-            {t("nav.home")}
-          </NavLink>
-          <NavLink to="/academics">Courses</NavLink>
-          <NavLink to="/elearning">E-Learning</NavLink>
+          <NavLink to="/" end>{t("nav.home")}</NavLink>
+          <NavLink to="/academics">{t("nav.courses")}</NavLink>
+          <NavLink to="/elearning">{t("nav.elearning")}</NavLink>
           <NavLink to="/about">{t("nav.about")}</NavLink>
-          <NavLink to="/blog">Blog</NavLink>
+          <NavLink to="/blog">{t("nav.blog")}</NavLink>
           {user && <NavLink to="/dashboard">Dashboard</NavLink>}
         </nav>
       </div>

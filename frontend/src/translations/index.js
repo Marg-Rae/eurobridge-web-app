@@ -2,9 +2,11 @@ const translations = {
   en: {
     nav: {
       home: "Home",
+      courses: "Courses",
+      elearning: "E-Learning",
       about: "About",
+      blog: "Blog",
       academics: "Academics",
-      elearning: "eLearning",
       staffPortal: "Staff Portal",
       studentPortal: "Student Portal"
     },
@@ -82,9 +84,11 @@ const translations = {
   sw: {
     nav: {
       home: "Nyumbani",
-      about: "Kuhusu",
-      academics: "Masomo",
+      courses: "Kozi",
       elearning: "Kujifunza Mtandaoni",
+      about: "Kuhusu",
+      blog: "Blogu",
+      academics: "Masomo",
       staffPortal: "Lango la Wafanyakazi",
       studentPortal: "Lango la Wanafunzi"
     },
@@ -162,9 +166,11 @@ const translations = {
   de: {
     nav: {
       home: "Startseite",
-      about: "Über uns",
-      academics: "Akademiker",
+      courses: "Kurse",
       elearning: "E-Learning",
+      about: "Über uns",
+      blog: "Blog",
+      academics: "Akademiker",
       staffPortal: "Mitarbeiterportal",
       studentPortal: "Studentenportal"
     },
@@ -242,9 +248,11 @@ const translations = {
   zh: {
     nav: {
       home: "首页",
-      about: "关于我们",
-      academics: "学术",
+      courses: "课程",
       elearning: "在线学习",
+      about: "关于我们",
+      blog: "博客",
+      academics: "学术",
       staffPortal: "员工门户",
       studentPortal: "学生门户"
     },

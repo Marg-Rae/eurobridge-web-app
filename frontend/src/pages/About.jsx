@@ -140,6 +140,32 @@ const About = () => {
         </div>
       </div>
 
+      {/* Photo strip */}
+      <section className="about-photo-strip">
+        <div className="section-header">
+          <h2>Our Community in Action</h2>
+          <p>From classroom sessions to graduation ceremonies — this is Eurobridge.</p>
+        </div>
+        <div className="photo-strip-grid">
+          <figure className="photo-strip-item photo-strip-wide">
+            <img src="/media/cohort1-dinner.jpg" alt="1st Cohort Dinner January 2026" />
+            <figcaption>1st Cohort Dinner &amp; Graduation — Jan 2026</figcaption>
+          </figure>
+          <figure className="photo-strip-item">
+            <img src="/media/cohort1-certificates.jpg" alt="Certificate presentations" />
+            <figcaption>Certificate Presentations</figcaption>
+          </figure>
+          <figure className="photo-strip-item">
+            <img src="/media/chinese-instructor.jpg" alt="Chinese instructor teaching" />
+            <figcaption>Expert Native Instructors</figcaption>
+          </figure>
+          <figure className="photo-strip-item photo-strip-wide">
+            <img src="/media/classroom-sessions.jpg" alt="Classroom learning sessions" />
+            <figcaption>Interactive Classroom Sessions</figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section className="panel-section">
         <div className="section-header">
           <h2>Meet our team</h2>

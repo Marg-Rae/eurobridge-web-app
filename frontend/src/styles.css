@@ -4342,10 +4342,10 @@ textarea {
   display: flex;
   gap: 1.2rem;
   align-items: flex-start;
-  background: linear-gradient(135deg, #ffffff, #fff8f0);
+  background: #fff;
   border-radius: 1.2rem;
   padding: 1.6rem;
-  box-shadow: 0 8px 24px var(--shadow);
+  box-shadow: 0 4px 16px var(--shadow);
   border: 1px solid rgba(201, 150, 74, 0.15);
 }
 
@@ -4354,7 +4354,7 @@ textarea {
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
-  background: var(--gradient-primary);
+  background: var(--brand-blue);
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -4394,4 +4394,252 @@ textarea {
   .elearning-steps {
     grid-template-columns: 1fr;
   }
+}
+
+/* ==============================
+   COMMUNITY GALLERY (HOME)
+   ============================== */
+
+.community-gallery-section {
+  padding: 2rem 6vw 3rem;
+  background: var(--panel);
+  border-radius: 1.8rem;
+  border: 1px solid rgba(31, 79, 154, 0.07);
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.community-bento {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bento-item {
+  position: relative;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  margin: 0;
+  cursor: pointer;
+  background: #0f172a;
+}
+
+.bento-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.bento-item:hover img {
+  transform: scale(1.06);
+  opacity: 0.72;
+}
+
+.bento-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.4rem 1.2rem 1.2rem;
+  background: linear-gradient(to top, rgba(10, 18, 36, 0.88) 0%, transparent 100%);
+  color: #fff;
+  transform: translateY(30%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.bento-item:hover figcaption {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.bento-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.bento-item figcaption strong {
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.bento-item figcaption p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+/* Layout assignments */
+.bento-feature {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  min-height: 420px;
+}
+
+.bento-portrait {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  min-height: 420px;
+}
+
+.bento-square {
+  grid-column: 3;
+  min-height: 200px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .community-bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .bento-feature {
+    grid-column: 1 / 3;
+    grid-row: auto;
+    min-height: 280px;
+  }
+
+  .bento-portrait {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 220px;
+  }
+
+  .bento-square {
+    grid-column: auto;
+    min-height: 200px;
+  }
+
+  .bento-item figcaption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 540px) {
+  .community-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .bento-feature,
+  .bento-portrait {
+    grid-column: auto;
+    min-height: 240px;
+  }
+
+  .community-gallery-section {
+    padding: 1.5rem 5vw 2rem;
+    border-radius: 1.2rem;
+  }
+}
+
+/* ==============================
+   ABOUT PHOTO STRIP
+   ============================== */
+
+.about-photo-strip {
+  padding: 2rem 0;
+}
+
+.photo-strip-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: 1rem;
+  margin-top: 2rem;
+  align-items: stretch;
+}
+
+.photo-strip-item {
+  position: relative;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  margin: 0;
+  background: #0f172a;
+  min-height: 260px;
+  cursor: pointer;
+}
+
+.photo-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.35s ease;
+}
+
+.photo-strip-item:hover img {
+  transform: scale(1.07);
+  opacity: 0.75;
+}
+
+.photo-strip-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1rem 0.9rem;
+  background: linear-gradient(to top, rgba(10, 18, 36, 0.85) 0%, transparent 100%);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transform: translateY(30%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.photo-strip-item:hover figcaption {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .photo-strip-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .photo-strip-item.photo-strip-wide {
+    grid-column: 1 / 3;
+  }
+
+  .photo-strip-item figcaption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 540px) {
+  .photo-strip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-strip-item.photo-strip-wide {
+    grid-column: auto;
+  }
+
+  .photo-strip-item {
+    min-height: 220px;
+  }
+}
+
+/* Also fix elearning-step gradient */
+.elearning-step {
+  background: #fff;
 }

@@ -140,6 +140,51 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ── Community Gallery ── */}
+      <section className="community-gallery-section">
+        <div className="section-header">
+          <h2>Life at Eurobridge</h2>
+          <p>Real moments from our classrooms, ceremonies, and community events.</p>
+        </div>
+        <div className="community-bento">
+          <figure className="bento-item bento-feature">
+            <img src="/media/cohort1-dinner.jpg" alt="1st Cohort Dinner — January 2026" />
+            <figcaption>
+              <span className="bento-tag">Event</span>
+              <strong>1st Cohort Dinner &amp; Graduation</strong>
+              <p>January 11, 2026 — celebrating our first cohort's completion at Comfy Hotel, Eldoret.</p>
+            </figcaption>
+          </figure>
+
+          <figure className="bento-item bento-portrait">
+            <img src="/media/classroom-sessions.jpg" alt="Live classroom sessions with Chinese instructor" />
+            <figcaption>
+              <span className="bento-tag">Classroom</span>
+              <strong>Interactive Learning Sessions</strong>
+              <p>Students engaged in live Mandarin Chinese classes with our visiting instructors.</p>
+            </figcaption>
+          </figure>
+
+          <figure className="bento-item bento-square">
+            <img src="/media/cohort1-certificates.jpg" alt="Students receiving completion certificates" />
+            <figcaption>
+              <span className="bento-tag">Milestone</span>
+              <strong>Certificate Presentations</strong>
+              <p>Graduates receiving their Certificates of Completion from Eurobridge Language Institute.</p>
+            </figcaption>
+          </figure>
+
+          <figure className="bento-item bento-square">
+            <img src="/media/chinese-instructor.jpg" alt="Chinese language instructor teaching" />
+            <figcaption>
+              <span className="bento-tag">Faculty</span>
+              <strong>Expert Native Instructors</strong>
+              <p>Our native-speaking tutors bring authentic language and cultural immersion to every class.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       <BlogSection />
 
       <section className="panel-section lead-magnet-section">
