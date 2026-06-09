@@ -123,7 +123,7 @@ const Home = () => {
                 aimed at enhancing skills development and creating employment
                 opportunities within local Chinese companies operating in Kenya.
                 This collaboration seeks to equip interested candidates with Basic
-                Chinese Language proficiency (HSK 1) — a key requirement for
+                Chinese Language proficiency (HSK 1), a key requirement for
                 effective communication and workplace integration in Chinese-led
                 organizations. Opportunities are available for professionals and
                 skilled individuals in areas such as Fashion &amp; Design, Electricians,

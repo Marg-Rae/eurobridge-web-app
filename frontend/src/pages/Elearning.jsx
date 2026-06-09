@@ -29,7 +29,7 @@ const features = [
   {
     icon: "📱",
     title: "Mobile Friendly",
-    description: "Access every lesson from your phone or tablet — learning never stops when you're on the go."
+    description: "Access every lesson from your phone or tablet. Learning never stops when you're on the go."
   }
 ];
 
@@ -49,8 +49,8 @@ const Elearning = () => {
           <span className="elearning-badge">Online Learning Platform</span>
           <h1>Learn Anywhere, Anytime</h1>
           <p className="hero-subtitle">
-            Eurobridge's full e-learning experience lives on our dedicated Moodle platform —
-            structured courses, live sessions, and progress tracking all in one place.
+            Eurobridge's full e-learning experience lives on our dedicated Moodle platform,
+            with structured courses, live sessions, and progress tracking all in one place.
           </p>
           <div className="elearning-hero-actions">
             <a
@@ -139,7 +139,7 @@ const Elearning = () => {
             <h2>Ready to Start Learning?</h2>
             <p>
               Head over to our Moodle platform, create your account, and begin your
-              language journey today — available 24/7 from any device.
+              language journey today, available 24/7 from any device.
             </p>
             <div className="cta-buttons">
               <a

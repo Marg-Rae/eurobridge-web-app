@@ -144,12 +144,12 @@ const About = () => {
       <section className="about-photo-strip">
         <div className="section-header">
           <h2>Our Community in Action</h2>
-          <p>From classroom sessions to graduation ceremonies — this is Eurobridge.</p>
+          <p>From classroom sessions to graduation ceremonies. This is Eurobridge.</p>
         </div>
         <div className="photo-strip-grid">
           <figure className="photo-strip-item photo-strip-wide">
             <img src="/media/cohort1-dinner.jpg" alt="1st Cohort Dinner January 2026" />
-            <figcaption>1st Cohort Dinner &amp; Graduation — Jan 2026</figcaption>
+            <figcaption>1st Cohort Dinner &amp; Graduation, Jan 2026</figcaption>
           </figure>
           <figure className="photo-strip-item">
             <img src="/media/cohort1-certificates.jpg" alt="Certificate presentations" />
