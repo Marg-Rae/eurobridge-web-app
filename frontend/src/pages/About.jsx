@@ -7,17 +7,17 @@ const About = () => {
   const teamMembers = [
     {
       name: "Chepkoech K.",
-      role: "Web & Digital Operations Manager",
+      role: "Digital Operations",
       image: "/media/chepkoech-k.jpg"
     },
     {
       name: "Bond N.",
-      role: "Digital Marketing Assistant",
+      role: "Administration",
       image: "/media/bond-n.jpg"
     },
     {
       name: "Kamala R.",
-      role: "Front Desk Assistant",
+      role: "Front Desk",
       image: "/media/kamala-r.png"
     }
   ];

@@ -1442,6 +1442,18 @@ textarea {
   font-weight: 600;
 }
 
+@media (max-width: 768px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    padding: 1.8rem;
+    gap: 1.5rem;
+  }
+
+  .about-hero-media {
+    min-height: 280px;
+  }
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
