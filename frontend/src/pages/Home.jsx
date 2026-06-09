@@ -148,11 +148,11 @@ const Home = () => {
         </div>
         <div className="community-bento">
           <figure className="bento-item bento-feature">
-            <img src="/media/cohort1-dinner.jpg" alt="1st Cohort Dinner — January 2026" />
+            <img src="/media/cohort1-dinner.jpg" alt="1st Cohort Dinner, January 2026" />
             <figcaption>
               <span className="bento-tag">Event</span>
               <strong>1st Cohort Dinner &amp; Graduation</strong>
-              <p>January 11, 2026 — celebrating our first cohort's completion at Comfy Hotel, Eldoret.</p>
+              <p>January 11, 2026. Celebrating our first cohort's completion at Comfy Hotel, Eldoret.</p>
             </figcaption>
           </figure>
 
