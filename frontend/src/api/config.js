@@ -25,16 +25,6 @@ export const API_BASE_URL = getApiBaseUrl();
 export const API_ENDPOINTS = {
   BLOGS: `${API_BASE_URL}/api/blogs`,
   APPLICATIONS: `${API_BASE_URL}/api/applications`,
-  AUTH: {
-    LOGIN: `${API_BASE_URL}/api/auth/login`,
-    REGISTER: `${API_BASE_URL}/api/auth/register`,
-    LOGOUT: `${API_BASE_URL}/api/auth/logout`,
-    ME: `${API_BASE_URL}/api/auth/me`,
-  },
-  DASHBOARD: {
-    STUDENT: `${API_BASE_URL}/api/dashboard/student`,
-    STAFF: `${API_BASE_URL}/api/dashboard/staff`,
-  },
   COURSES: `${API_BASE_URL}/api/courses`,
   CONTACT: `${API_BASE_URL}/api/contact`,
 };

@@ -184,7 +184,7 @@ const Academics = () => {
                     <span className="program-duration">⏱️ {program.duration}</span>
                   </div>
 
-                  <Link to={`/school-portal?lang=${program.name.toLowerCase()}`} className="button primary btn-block">
+                  <Link to="/apply" className="button primary btn-block">
                     Explore Course
                   </Link>
                 </div>
@@ -269,7 +269,7 @@ const Academics = () => {
                 <li>📝 Weekly homework</li>
                 <li>🧪 Monthly assessments</li>
               </ul>
-              <Link to="/school-portal" className="button secondary">
+              <Link to="/apply" className="button secondary">
                 Enroll in Standard
               </Link>
             </div>
@@ -285,7 +285,7 @@ const Academics = () => {
                 <li>📝 Daily practice</li>
                 <li>🧪 Bi-weekly assessments</li>
               </ul>
-              <Link to="/school-portal" className="button primary">
+              <Link to="/apply" className="button primary">
                 Enroll in Intensive
               </Link>
             </div>
@@ -343,7 +343,7 @@ const Academics = () => {
             <h2>Ready to Transform Your Language Skills?</h2>
             <p>Join thousands of successful graduates who achieved fluency and career advancement with Eurobridge</p>
             <div className="cta-buttons">
-              <Link to="/school-portal" className="button primary btn-lg">
+              <Link to="/apply" className="button primary btn-lg">
                 Enroll Now
               </Link>
               <Link to="/about#contact-us" className="button secondary btn-lg">

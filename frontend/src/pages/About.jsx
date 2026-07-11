@@ -86,7 +86,7 @@ const About = () => {
           <h2>Ready to Master Languages?</h2>
           <p>Join our community of confident global communicators. Take the first step toward language mastery today.</p>
         </div>
-        <Link to="/school-portal" className="button primary">Join Us</Link>
+        <Link to="/apply" className="button primary">Join Us</Link>
       </section>
 
       <section className="panel-section">

@@ -118,22 +118,13 @@ const Home = () => {
             <details className="announcement-details">
               <summary className="flashy-summary">📖 Read full announcement</summary>
               <p>
-                We are excited to announce a strategic partnership between Teso
-                North Constituency, Fullcare, and Eurobridge Language Institute
-                aimed at enhancing skills development and creating employment
-                opportunities within local Chinese companies operating in Kenya.
-                This collaboration seeks to equip interested candidates with Basic
-                Chinese Language proficiency (HSK 1), a key requirement for
-                effective communication and workplace integration in Chinese-led
-                organizations. Opportunities are available for professionals and
-                skilled individuals in areas such as Fashion &amp; Design, Electricians,
-                Plumbers, IT Professionals, Human Resource Personnel, Plant
-                Operators, Technicians, and semi-skilled/unskilled sectors. By
-                combining technical skills with basic Chinese language training,
-                this initiative will increase employability, enhance workplace
-                efficiency, and open doors to sustainable career growth.
-                Registration is ongoing. Together, we build capacity. Together,
-                we create opportunities.
+                Eurobridge Language Institute has partnered with Teso North
+                Constituency and Fullcare to equip candidates with Basic
+                Chinese Language proficiency (HSK 1) for workplace integration
+                in Chinese-led companies operating in Kenya. Open to
+                professionals and skilled individuals in Fashion &amp; Design,
+                Electricians, Plumbers, IT, HR, Plant Operators, Technicians,
+                and semi-skilled sectors. Registration is ongoing.
               </p>
             </details>
           </article>
@@ -276,7 +267,7 @@ const Home = () => {
         <div className="section-header">
           <h2>Courses overview</h2>
           <p>Sliding highlights from our flagship language tracks.</p>
-          <Link to="/school-portal" className="button primary" style={{marginTop: '1rem'}}>Register for Courses</Link>
+          <Link to="/apply" className="button primary" style={{marginTop: '1rem'}}>Register for Courses</Link>
         </div>
         <div className="courses-slider">
           <div className="slider-track">

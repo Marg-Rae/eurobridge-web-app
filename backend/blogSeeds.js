@@ -140,7 +140,7 @@ const blogSeeds = [
 <p>Germany is known for its efficiency, precision, and strong work ethic. For international apprentices entering the Ausbildung system, adapting to German workplace culture can mean the difference between thriving and struggling. This guide reveals five essential aspects of German professional culture that will help you succeed.</p>
 
 <h2>1. Punctuality is Non-Negotiable</h2>
-<p>In Germany, punctuality is far more than good manners—it's a fundamental professional value. Arriving even 5 minutes late to a meeting or your shift is considered disrespectful and unreliable.</p>
+<p>In Germany, punctuality is far more than good manners. It is a fundamental professional value. Arriving even 5 minutes late to a meeting or your shift is considered disrespectful and unreliable.</p>
 <ul>
 <li><strong>Arrive 10-15 minutes early</strong> to shift starts and meetings</li>
 <li><strong>Plan your commute carefully</strong> to account for traffic and public transport delays</li>
@@ -153,7 +153,7 @@ const blogSeeds = [
 <ul>
 <li><strong>Speak honestly and directly</strong> about your thoughts and concerns</li>
 <li><strong>Don't take criticism personally</strong>; it's meant to improve work quality, not attack you</li>
-<li><strong>Ask clarifying questions</strong> if instructions aren't clear—Germans respect this</li>
+<li><strong>Ask clarifying questions</strong> if instructions aren't clear, Germans respect this</li>
 <li><strong>Admit mistakes promptly</strong> and propose solutions rather than making excuses</li>
 <li><strong>Expect feedback to be frank</strong> and sometimes blunt by other cultures' standards</li>
 </ul>
@@ -181,7 +181,7 @@ const blogSeeds = [
 <h2>5. Rules Exist for Good Reasons</h2>
 <p>German culture places high value on rules, regulations, and standardized procedures. Understanding why rules exist helps you navigate this mindset.</p>
 <ul>
-<li><strong>Follow procedures exactly</strong> as outlined—Germans don't see rules as suggestions</li>
+<li><strong>Follow procedures exactly</strong> as outlined, Germans don't see rules as suggestions</li>
 <li><strong>Document everything</strong> in writing; verbal agreements carry less weight</li>
 <li><strong>Respect safety protocols</strong> rigorously; shortcuts are unacceptable</li>
 <li><strong>Be reliable and consistent</strong>; Germans value predictability</li>
@@ -189,7 +189,7 @@ const blogSeeds = [
 </ul>
 
 <h2>Conclusion: Cultural Integration</h2>
-<p>Adapting to German workplace culture doesn't mean abandoning your own identity—it means showing respect for local norms and expectations. Most German supervisors and colleagues understand that international apprentices are learning, and they appreciate genuine effort to integrate.</p>
+<p>Adapting to German workplace culture doesn't mean abandoning your own identity. It means showing respect for local norms and expectations. Most German supervisors and colleagues understand that international apprentices are learning, and they appreciate genuine effort to integrate.</p>
 <p>Start by observing, ask respectful questions, and don't hesitate to ask for clarification on cultural expectations. Building strong professional relationships with your German colleagues is entirely possible when you demonstrate reliability, honesty, and respect for their values.</p>
 `,
     createdAt: new Date("2024-01-20")
@@ -233,7 +233,7 @@ const blogSeeds = [
 
 <h2>8. Logistics & Supply Chain Specialist</h2>
 <p><strong>Duration:</strong> 3 years | <strong>Average Salary During Apprenticeship:</strong> €550-€750/month | <strong>Post-Apprenticeship Salary:</strong> €2,000-€2,800/month</p>
-<p>Germany's position as a logistics hub creates steady demand. This field combines organizational skills with technological knowledge—ideal for career growth.</p>
+<p>Germany's position as a logistics hub creates steady demand. This field combines organizational skills with technological knowledge, ideal for career growth.</p>
 
 <h2>9. Automotive Technician (Kfz-Mechatroniker)</h2>
 <p><strong>Duration:</strong> 3.5 years | <strong>Average Salary During Apprenticeship:</strong> €700-€900/month | <strong>Post-Apprenticeship Salary:</strong> €2,400-€3,400/month</p>
@@ -255,6 +255,62 @@ const blogSeeds = [
 `,
     image: "/assets/ausbildung-career-paths.jpg",
     createdAt: new Date("2024-01-25")
+  },
+
+  {
+    title: "Eurobridge Language Institute Engages Nandi County MCAs",
+    slug: "nandi-county-mcas-engagement",
+    summary: "Eurobridge Language Institute hosted Members of the Nandi County Assembly at Weston Hotel to present its language and professional development programs, reinforcing a shared commitment to empowering local talent through education.",
+    content: `
+<h2>A Productive Meeting at Weston Hotel</h2>
+<p>Eurobridge Language Institute held a productive meeting with Members of County Assembly (MCAs) from Nandi County at Weston Hotel. The session brought together institute leadership and elected representatives to explore how language training and professional development can support the county's goals for talent and service delivery.</p>
+
+<h2>Presenting Our Language and Professional Development Programs</h2>
+<p>The session focused on presenting the institute's full range of language and professional development programs. Eurobridge outlined its approach to building practical, career ready skills for learners across Nandi County and beyond.</p>
+
+<h2>Key Offerings Highlighted</h2>
+<ul>
+<li><strong>Professional German:</strong> Structured pathways for learners pursuing Ausbildung, further study, or employment in Germany</li>
+<li><strong>Professional Chinese:</strong> Language training aligned with growing trade, business, and diplomatic ties</li>
+<li><strong>Customized Corporate Training:</strong> Programs tailored to the needs of organizations, institutions, and government departments</li>
+<li>Several other flagship language and professional development tracks</li>
+</ul>
+
+<h2>Partnering with County Governments</h2>
+<p>Eurobridge Language Institute remains committed to partnering with county governments to empower local talent and enhance service delivery. Collaborations like this one help align training opportunities with the priorities of the communities we serve.</p>
+
+<h2>Thank You to the Honourable MCAs</h2>
+<p>We thank the Honourable MCAs from Nandi County for their attendance and valuable feedback. Their engagement affirms the role that language and skills training can play in county development, and we look forward to future collaboration.</p>
+
+<h2>Get Involved</h2>
+<p>For more information on our programs and admissions, reach out to our team or follow Eurobridge Language Institute on Facebook and Instagram for updates on courses, intakes, and community partnerships.</p>
+`,
+    image: "/assets/Eurobridge1.jpeg",
+    createdAt: new Date("2024-01-30")
+  },
+
+  {
+    title: "Honourable Visit: Emgwen MP Joses Lelemengit Meets Eurobridge Students",
+    slug: "mp-joses-lelemengit-visit",
+    summary: "Emgwen Constituency MP Hon. Joses Lelemengit visited Eurobridge Language Institute to meet students and staff, sharing insights and encouragement with learners pursuing language excellence and global opportunities.",
+    content: `
+<h2>A Powerful Moment for Our Students</h2>
+<p>We were deeply honoured to host Emgwen Constituency MP, Hon. Joses Lelemengit, as he met with our students and team at Eurobridge Language Institute. The visit brought real energy to our campus, with interactive sessions, shared insights, and genuine conversation between the Honourable MP and our learners.</p>
+
+<h2>Building Futures Through Language</h2>
+<p>At Eurobridge Language Institute, we are not just teaching languages, we are building futures. Every visit, partnership, and conversation reinforces our mission to prepare students for language excellence and global opportunity, whether that means further study, skilled employment, or a new career path abroad.</p>
+
+<h2>Encouragement from Leadership</h2>
+<p>Hon. Joses Lelemengit's visit was a reminder that education and language training open doors well beyond the classroom. His continued support and belief in the power of education mean a great deal to our students and to the wider Eurobridge community.</p>
+
+<h2>Thank You, Hon. Joses Lelemengit</h2>
+<p>Thank you, Hon. Joses Lelemengit, for your time, your encouragement, and your continued support of our students as they pursue their dreams.</p>
+
+<h2>Stay Connected</h2>
+<p>Follow Eurobridge Language Institute for the latest courses and intakes, student success stories, exciting events and visits, and language learning tips. Join the movement, and be part of our next chapter.</p>
+`,
+    image: "/assets/Eurobridge2.jpeg",
+    createdAt: new Date("2024-02-04")
   }
 ];
 

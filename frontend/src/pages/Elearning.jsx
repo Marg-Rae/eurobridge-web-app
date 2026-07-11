@@ -66,34 +66,6 @@ const Elearning = () => {
             </a>
           </div>
         </div>
-        <div className="elearning-gateway-hero-visual">
-          <div className="moodle-preview-card">
-            <div className="moodle-preview-header">
-              <span className="moodle-dot red"></span>
-              <span className="moodle-dot yellow"></span>
-              <span className="moodle-dot green"></span>
-              <span className="moodle-preview-url">moodle.eurobridgelanguageinstitute.com</span>
-            </div>
-            <div className="moodle-preview-body">
-              <div className="moodle-preview-sidebar">
-                <div className="moodle-preview-item active"></div>
-                <div className="moodle-preview-item"></div>
-                <div className="moodle-preview-item"></div>
-                <div className="moodle-preview-item"></div>
-              </div>
-              <div className="moodle-preview-main">
-                <div className="moodle-preview-bar wide"></div>
-                <div className="moodle-preview-bar medium"></div>
-                <div className="moodle-preview-bar short"></div>
-                <div className="moodle-preview-progress">
-                  <div className="moodle-preview-progress-fill"></div>
-                </div>
-                <div className="moodle-preview-bar medium"></div>
-                <div className="moodle-preview-bar short"></div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div className="content-wrapper">

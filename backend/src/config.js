@@ -24,11 +24,7 @@ export const config = {
   // Database Configuration
   MONGODB_URI: process.env.MONGODB_URI,
   MONGODB_DB_NAME: process.env.MONGODB_DB_NAME || "eurobridge",
-  
-  // Authentication
-  JWT_SECRET: process.env.JWT_SECRET,
-  JWT_EXPIRE: process.env.JWT_EXPIRE || "7d",
-  
+
   // CORS Configuration
   CORS_ORIGIN: process.env.CORS_ORIGIN || "*",
 };
@@ -39,15 +35,6 @@ export const config = {
  */
 export const validateConfig = () => {
   const errors = [];
-
-  // Check JWT_SECRET
-  if (!config.JWT_SECRET) {
-    errors.push(
-      "❌ JWT_SECRET is missing",
-      "   → Set JWT_SECRET in environment variables",
-      "   → On Render: Go to Environment tab and add JWT_SECRET"
-    );
-  }
 
   // Check MONGODB_URI
   if (!config.MONGODB_URI) {
@@ -68,7 +55,7 @@ export const validateConfig = () => {
     console.error("      → Fill in your actual values\n");
     console.error("   2. Production (Render):");
     console.error("      → Go to Render Dashboard → Service → Environment");
-    console.error("      → Add JWT_SECRET and MONGODB_URI");
+    console.error("      → Add MONGODB_URI");
     console.error("      → Click Save and redeploy\n");
     
     throw new Error(`Missing required environment variables: ${errors.length} error(s)`);
@@ -82,7 +69,6 @@ export const logConfigStatus = () => {
   console.log("\n✅ Environment Configuration Loaded\n");
   console.log(`  NODE_ENV:      ${config.NODE_ENV}`);
   console.log(`  PORT:          ${config.PORT}`);
-  console.log(`  JWT_SECRET:    Set (${config.JWT_SECRET?.length || 0} characters)`);
   console.log(`  MONGODB_URI:   ${config.MONGODB_URI?.replace(/:([^@]+)@/, ":****@") || "NOT SET"}`);
   console.log(`  DATABASE:      ${config.MONGODB_DB_NAME}`);
   console.log(`  CORS_ORIGIN:   ${config.CORS_ORIGIN}`);

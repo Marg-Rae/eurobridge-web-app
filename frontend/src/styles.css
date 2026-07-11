@@ -185,42 +185,6 @@ main {
   transform: translateY(-2px);
 }
 
-.portal-button {
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  background: #fff;
-  color: var(--brand-blue-dark);
-  padding: 0.7rem 1.5rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
-}
-
-.portal-button.ghost {
-  background: transparent;
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.8);
-}
-
-.portal-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.35);
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-
-.portal-button.ghost:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #fff;
-  color: #fff;
-}
-
 .site-footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -506,113 +470,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-}
-
-.auth-panel {
-  background: #fff9f2;
-  border: 1px solid rgba(201, 150, 74, 0.25);
-}
-
-.auth-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.8rem;
-  align-items: start;
-}
-
-.auth-card {
-  background: #fff;
-  padding: 1.6rem;
-  border-radius: 1.2rem;
-  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.1);
-}
-
-.auth-tabs {
-  display: flex;
-  gap: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.tab {
-  border: 1px solid rgba(122, 75, 27, 0.3);
-  background: #fff;
-  color: var(--accent-dark);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.tab.active {
-  z-index: 2;
-  background: var(--ink);
-  color: #fff;
-  border-color: transparent;
-}
-
-.auth-form {
-  display: grid;
-  gap: 0.9rem;
-  margin-bottom: 0.8rem;
-}
-
-.auth-benefits {
-  background: #111724;
-  color: #fff;
-  padding: 1.6rem;
-  border-radius: 1.4rem;
-  min-height: 240px;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.3);
-  display: grid;
-  gap: 1rem;
-  align-content: start;
-}
-
-.auth-benefits ul {
-  margin: 0;
-  padding-left: 1.2rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.auth-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 18, 35, 0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  z-index: 20;
-}
-
-.auth-modal.open {
-  display: flex;
-}
-
-.auth-modal-panel {
-  background: #fff;
-  border-radius: 1.4rem;
-  padding: 2rem;
-  width: min(520px, 100%);
-  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.3);
-}
-
-.auth-close {
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  font-weight: 600;
-  cursor: pointer;
-  margin-left: auto;
-  display: block;
-}
-
-.portal-footer {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
 }
 
 .hero-banner {
@@ -1237,86 +1094,6 @@ textarea {
   margin: 1rem 0 0;
   padding-left: 1.2rem;
   color: var(--muted);
-}
-
-.portal-page {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  align-items: start;
-}
-
-.portal-card {
-  background: #fff;
-  border-radius: 1.4rem;
-  padding: 1.8rem;
-  box-shadow: 0 18px 36px var(--shadow);
-}
-
-.portal-info {
-  background: #111724;
-  color: #fff;
-  padding: 1.8rem;
-  border-radius: 1.4rem;
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.3);
-}
-
-.portal-info ul {
-  margin: 1rem 0 0;
-  padding-left: 1.2rem;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.role-select-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.role-card {
-  background: #fff;
-  border-radius: 1.6rem;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 18px 36px var(--shadow);
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.role-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 28px 48px var(--shadow-strong);
-  border-color: var(--brand-blue);
-}
-
-.role-card .role-icon {
-  font-size: 4rem;
-  display: block;
-}
-
-.role-card h3 {
-  margin: 0;
-  font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
-  color: var(--ink);
-}
-
-.role-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-.role-card .button {
-  margin-top: 1rem;
-  width: 100%;
-  padding: 1rem;
 }
 
 .about-hero {
@@ -4193,10 +3970,8 @@ textarea {
    ============================== */
 
 .elearning-gateway-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  display: flex;
+  justify-content: center;
   padding: 4rem 6vw 3rem;
   background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-blue-dark) 100%);
   color: #fff;
@@ -4205,7 +3980,10 @@ textarea {
 .elearning-gateway-hero-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 1.4rem;
+  max-width: 720px;
 }
 
 .elearning-badge {
@@ -4237,109 +4015,10 @@ textarea {
 
 .elearning-hero-actions {
   display: flex;
+  justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 0.5rem;
-}
-
-/* Moodle browser mock */
-.elearning-gateway-hero-visual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.moodle-preview-card {
-  background: #1e293b;
-  border-radius: 1.2rem;
-  overflow: hidden;
-  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
-  width: 100%;
-  max-width: 420px;
-}
-
-.moodle-preview-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: #0f172a;
-}
-
-.moodle-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
-.moodle-dot.red    { background: #ef4444; }
-.moodle-dot.yellow { background: #f59e0b; }
-.moodle-dot.green  { background: #22c55e; }
-
-.moodle-preview-url {
-  margin-left: 0.5rem;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.45);
-  font-family: monospace;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.moodle-preview-body {
-  display: flex;
-  gap: 0;
-  height: 200px;
-}
-
-.moodle-preview-sidebar {
-  width: 60px;
-  background: #1a2744;
-  padding: 1rem 0.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.moodle-preview-item {
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.15);
-}
-
-.moodle-preview-item.active {
-  background: var(--accent);
-}
-
-.moodle-preview-main {
-  flex: 1;
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
-.moodle-preview-bar {
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.12);
-}
-.moodle-preview-bar.wide   { width: 90%; }
-.moodle-preview-bar.medium { width: 65%; }
-.moodle-preview-bar.short  { width: 40%; }
-
-.moodle-preview-progress {
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.1);
-  overflow: hidden;
-  margin-top: 0.4rem;
-}
-
-.moodle-preview-progress-fill {
-  height: 100%;
-  width: 68%;
-  background: linear-gradient(90deg, var(--accent), #e8b86d);
-  border-radius: 4px;
 }
 
 /* Steps */
@@ -4390,17 +4069,7 @@ textarea {
 
 @media (max-width: 768px) {
   .elearning-gateway-hero {
-    grid-template-columns: 1fr;
     padding: 2.5rem 5vw 2rem;
-    text-align: center;
-  }
-
-  .elearning-hero-actions {
-    justify-content: center;
-  }
-
-  .elearning-gateway-hero-visual {
-    display: none;
   }
 
   .elearning-steps {

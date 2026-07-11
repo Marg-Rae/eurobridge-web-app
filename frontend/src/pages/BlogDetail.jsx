@@ -89,7 +89,7 @@ const BlogDetail = () => {
           <p>
             Connect with our experts to learn more about programs in Germany.
           </p>
-          <Link to="/school-portal?type=student" className="button primary">
+          <Link to="/apply" className="button primary">
             Get in Touch
           </Link>
         </div>

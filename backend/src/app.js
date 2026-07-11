@@ -4,10 +4,7 @@ import config from "./config.js";
 import coursesRoutes from "./routes/courses.routes.js";
 import blogsRoutes from "./routes/blogs.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
-import authRoutes from "./routes/auth.routes.js";
-import dashboardRoutes from "./routes/dashboard.routes.js";
 import applicationsRoutes from "./routes/applications.routes.js";
-import adminRoutes from "./routes/admin.routes.js";
 
 const app = express();
 
@@ -74,10 +71,7 @@ app.get('/test', (req, res) => {
 app.use("/api/courses", coursesRoutes);
 app.use("/api/blogs", blogsRoutes);
 app.use("/api/contact", contactRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/applications", applicationsRoutes);
-app.use("/api/admin", adminRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });

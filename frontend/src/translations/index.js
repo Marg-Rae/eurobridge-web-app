@@ -6,9 +6,7 @@ const translations = {
       elearning: "E-Learning",
       about: "About",
       blog: "Blog",
-      academics: "Academics",
-      staffPortal: "Staff Portal",
-      studentPortal: "Student Portal"
+      academics: "Academics"
     },
     hero: {
       completionRate: "Completion rate",
@@ -65,20 +63,6 @@ const translations = {
       title: "Ready to unlock global opportunity?",
       subtitle: "Meet our advisors in Eldoret or connect online to map your custom language journey.",
       button: "Speak with an Advisor"
-    },
-    auth: {
-      signIn: "Sign in",
-      register: "Register",
-      fullName: "Full name",
-      email: "Email",
-      password: "Password",
-      createAccount: "Create account",
-      close: "Close",
-      signOut: "Sign out",
-      sessionActive: "Session active.",
-      successRegister: "Successfully registered! Welcome to Eurobridge Language Institute.",
-      successSignIn: "Signed in successfully. Welcome back!",
-      successSignOut: "Signed out."
     }
   },
   sw: {
@@ -88,9 +72,7 @@ const translations = {
       elearning: "Kujifunza Mtandaoni",
       about: "Kuhusu",
       blog: "Blogu",
-      academics: "Masomo",
-      staffPortal: "Lango la Wafanyakazi",
-      studentPortal: "Lango la Wanafunzi"
+      academics: "Masomo"
     },
     hero: {
       completionRate: "Kiwango cha ukamilifu",
@@ -147,20 +129,6 @@ const translations = {
       title: "Uko tayari kufungua fursa za kimataifa?",
       subtitle: "Kutana na washauri wetu Eldoret au uwasiliane mtandaoni ili kurekebisha safari yako ya lugha ya kipekee.",
       button: "Zungumza na Mshauri"
-    },
-    auth: {
-      signIn: "Ingia",
-      register: "Jisajili",
-      fullName: "Jina kamili",
-      email: "Barua pepe",
-      password: "Nywila",
-      createAccount: "Fungua akaunti",
-      close: "Funga",
-      signOut: "Toka",
-      sessionActive: "Kikao ni hai.",
-      successRegister: "Umejisajili kikamilifu! Karibu Eurobridge Language Institute.",
-      successSignIn: "Umeingia kikamilifu. Karibu tena!",
-      successSignOut: "Umetoka."
     }
   },
   de: {
@@ -170,9 +138,7 @@ const translations = {
       elearning: "E-Learning",
       about: "Über uns",
       blog: "Blog",
-      academics: "Akademiker",
-      staffPortal: "Mitarbeiterportal",
-      studentPortal: "Studentenportal"
+      academics: "Akademiker"
     },
     hero: {
       completionRate: "Abschlussquote",
@@ -229,20 +195,6 @@ const translations = {
       title: "Bereit, globale Chancen zu erschließen?",
       subtitle: "Treffen Sie unsere Berater in Eldoret oder verbinden Sie sich online, um Ihre individuelle Sprachreise zu planen.",
       button: "Mit einem Berater sprechen"
-    },
-    auth: {
-      signIn: "Anmelden",
-      register: "Registrieren",
-      fullName: "Vollständiger Name",
-      email: "E-Mail",
-      password: "Passwort",
-      createAccount: "Konto erstellen",
-      close: "Schließen",
-      signOut: "Abmelden",
-      sessionActive: "Sitzung aktiv.",
-      successRegister: "Erfolgreich registriert! Willkommen im Eurobridge Language Institute.",
-      successSignIn: "Erfolgreich angemeldet. Willkommen zurück!",
-      successSignOut: "Abgemeldet."
     }
   },
   zh: {
@@ -252,9 +204,7 @@ const translations = {
       elearning: "在线学习",
       about: "关于我们",
       blog: "博客",
-      academics: "学术",
-      staffPortal: "员工门户",
-      studentPortal: "学生门户"
+      academics: "学术"
     },
     hero: {
       completionRate: "完成率",
@@ -311,20 +261,6 @@ const translations = {
       title: "准备好解锁全球机会了吗？",
       subtitle: "在埃尔多雷特与我们的顾问见面，或在线联系以规划您的定制语言之旅。",
       button: "与顾问交谈"
-    },
-    auth: {
-      signIn: "登录",
-      register: "注册",
-      fullName: "全名",
-      email: "电子邮件",
-      password: "密码",
-      createAccount: "创建账户",
-      close: "关闭",
-      signOut: "退出",
-      sessionActive: "会话活跃。",
-      successRegister: "注册成功！欢迎来到Eurobridge语言学院。",
-      successSignIn: "登录成功。欢迎回来！",
-      successSignOut: "已退出。"
     }
   }
 };
