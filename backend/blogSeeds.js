@@ -286,7 +286,7 @@ const blogSeeds = [
 <p>For more information on our programs and admissions, reach out to our team or follow Eurobridge Language Institute on Facebook and Instagram for updates on courses, intakes, and community partnerships.</p>
 `,
     image: "/assets/Eurobridge1.jpeg",
-    createdAt: new Date("2024-01-30")
+    createdAt: new Date("2025-04-15")
   },
 
   {
@@ -310,7 +310,33 @@ const blogSeeds = [
 <p>Follow Eurobridge Language Institute for the latest courses and intakes, student success stories, exciting events and visits, and language learning tips. Join the movement, and be part of our next chapter.</p>
 `,
     image: "/assets/Eurobridge2.jpeg",
-    createdAt: new Date("2024-02-04")
+    createdAt: new Date("2025-06-02")
+  },
+  {
+    title: "Germany Bound: Eurobridge Students Begin Their Journey",
+    slug: "germany-bound-eurobridge-students-begin-their-journey",
+    summary: "Two Eurobridge students are preparing to begin a new chapter in Germany, carrying hope, confidence, and a determined spirit as they step toward their next big dream.",
+    content: `
+<h2>A Proud Departure</h2>
+<p>Today is a meaningful moment for Eurobridge Language Institute as we celebrate students who are beginning their journey to Germany. Their dream is not just about travel; it represents years of preparation, determination, and a strong belief in what is possible.</p>
+
+<p>With luggage in hand and excitement in their hearts, these students are stepping into a new chapter with confidence. This is a moment of progress, hope, and the beginning of a future filled with opportunity.</p>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin:2rem 0;">
+  <img src="/assets/Eurobridge3.png" alt="Eurobridge students by the international departures sign" style="width:100%; height:320px; object-fit:cover; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,0.12);" />
+  <img src="/assets/Eurobridge4.png" alt="Eurobridge students smiling before leaving for Germany" style="width:100%; height:320px; object-fit:cover; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,0.12);" />
+</div>
+
+<h2>Prepared for the Future</h2>
+<p>These students have worked hard to reach this stage. Their progress reflects the values Eurobridge holds dear: dedication, language growth, and the courage to pursue global opportunity.</p>
+
+<p>As they head toward Germany, they carry with them not just bags, but also ambition, focus, and a clear vision for the life they want to build. We are proud to stand behind them.</p>
+
+<h2>We Celebrate Their Journey</h2>
+<p>We wish them a safe journey and a successful future in Germany. This is a major step forward, and we are excited to see where this new chapter leads.</p>
+`,
+    image: "/assets/Eurobridge3.png",
+    createdAt: new Date("2026-09-25")
   }
 ];
 
