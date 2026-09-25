@@ -1,6 +1,6 @@
 [build]
   base = "frontend"
-  command = "npm install && npm run build"
+  command = "rm -f package-lock.json && npm install && npm run build"
   publish = "dist"
 
 [[redirects]]
