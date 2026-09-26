@@ -19,14 +19,14 @@ if (process.env.NODE_ENV !== "production") {
 export const config = {
   // Server Configuration
   NODE_ENV: process.env.NODE_ENV || "development",
-  PORT: process.env.PORT || 5000,
-  
+  PORT: process.env.PORT || 5001,
+
   // Database Configuration
   MONGODB_URI: process.env.MONGODB_URI,
   MONGODB_DB_NAME: process.env.MONGODB_DB_NAME || "eurobridge",
 
   // CORS Configuration
-  CORS_ORIGIN: process.env.CORS_ORIGIN || "*",
+  CORS_ORIGIN: process.env.CORS_ORIGIN || "http://localhost:5173,http://localhost:5174,http://localhost:5175",
 };
 
 /**

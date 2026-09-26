@@ -10,7 +10,7 @@ const getApiBaseUrl = () => {
 
   // Fallback for development
   if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-    return "http://localhost:5000";
+    return "http://localhost:5001";
   }
 
   // Production fallback - use the Render backend URL
