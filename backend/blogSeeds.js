@@ -384,6 +384,40 @@ const blogSeeds = [
 `,
     image: "/assets/Eurobridge5.png",
     createdAt: new Date("2026-09-25")
+  },
+  {
+    title: "A Message from Our Director: How Learning German Can Open Doors",
+    slug: "director-message-opportunities-learning-german",
+    summary: "Hear from the Director of Eurobridge Language Institute about the opportunities that learning German can help learners pursue, and why strong language skills are an important first step.",
+    content: `
+<p>Learning a new language can expand the way we connect with people, education, and the world of work. In this video, the Director of Eurobridge Language Institute speaks about the opportunities learners can pursue by investing in German language skills.</p>
+
+<figure class="blog-video">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/MJKOufTXr4M"
+    title="Eurobridge Language Institute Director discusses opportunities in learning German"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</figure>
+
+<p><a href="https://youtu.be/MJKOufTXr4M?si=lA-9oagUCAyDwfyU" target="_blank" rel="noopener noreferrer">Watch the Director's video on YouTube</a>.</p>
+
+<h2>German as a bridge to new possibilities</h2>
+<p>German can help learners prepare for opportunities that involve studying, training, working, or building connections in German-speaking communities. It also helps make everyday communication and cultural exchange more accessible. The right opportunity will depend on each person's goals, qualifications, and circumstances, but learning the language is a practical step toward being better prepared.</p>
+
+<h2>Build your skills one step at a time</h2>
+<p>Progress comes from consistent practice. Start with a clear goal, strengthen your listening and speaking through regular use, and build reading and writing skills alongside them. As your confidence grows, continue learning toward the level required for your intended study or career pathway.</p>
+
+<p>At Eurobridge Language Institute, we believe that every learner's journey is unique. German study can be a valuable foundation for pursuing new possibilities, and our Director's message invites you to consider where your own language-learning journey could lead.</p>
+
+<h2>Take your next step</h2>
+<p>Explore our German language programs and talk with our team about your goals. We can help you understand the learning options available and plan a suitable next step.</p>
+`,
+    image: "https://img.youtube.com/vi/MJKOufTXr4M/hqdefault.jpg",
+    createdAt: new Date("2026-10-15")
   }
 ];
 

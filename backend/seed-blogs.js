@@ -13,15 +13,20 @@ async function seedBlogs() {
     });
     console.log("✅ Connected to MongoDB");
 
-    console.log("🗑️  Clearing existing blogs...");
-    await Blog.deleteMany({});
+    console.log("📝 Adding any missing seed blog posts...");
+    const result = await Blog.bulkWrite(
+      blogSeeds.map((blog) => ({
+        updateOne: {
+          filter: { slug: blog.slug },
+          update: { $setOnInsert: blog },
+          upsert: true
+        }
+      }))
+    );
+    console.log(`✅ Added ${result.upsertedCount} blog posts; existing posts were preserved.`);
 
-    console.log("📝 Seeding example blog posts...");
-    const result = await Blog.insertMany(blogSeeds);
-    console.log(`✅ Successfully created ${result.length} blog posts!`);
-
-    console.log("\n📊 Blog posts created:");
-    result.forEach((blog, index) => {
+    console.log("\n📊 Seed blog posts already present or added:");
+    blogSeeds.forEach((blog, index) => {
       console.log(`   ${index + 1}. "${blog.title}"`);
     });
 

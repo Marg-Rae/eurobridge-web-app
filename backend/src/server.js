@@ -3,6 +3,8 @@ import { Server } from "socket.io";
 import app from "./app.js";
 import { connectDB } from "./config/db.js";
 import config, { validateConfig, logConfigStatus } from "./config.js";
+import Blog from "./models/Blog.js";
+import blogSeeds from "../blogSeeds.js";
 
 // Validate configuration before starting anything
 try {
@@ -20,6 +22,30 @@ const startServer = async () => {
 	try {
 		// Attempt to connect to MongoDB
 		await connectDB();
+
+		const directorBlog = blogSeeds.find(
+			(blog) => blog.slug === "director-message-opportunities-learning-german"
+		);
+		if (!directorBlog) {
+			throw new Error("Director German-language blog post is missing from blog seeds");
+		}
+
+		const { image, ...directorBlogWithoutImage } = directorBlog;
+		const seedResult = await Blog.bulkWrite([{
+			updateOne: {
+				filter: { slug: directorBlog.slug },
+				update: {
+					$setOnInsert: directorBlogWithoutImage,
+					$set: { image }
+				},
+				upsert: true
+			}
+		}]);
+		console.log(
+			seedResult.upsertedCount
+				? "✅ Published the Director's German-language blog post"
+				: "ℹ️ Director's German-language blog post already exists"
+		);
 
 		// Create HTTP server
 		const httpServer = createServer(app);

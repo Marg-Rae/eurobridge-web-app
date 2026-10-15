@@ -1529,6 +1529,24 @@ textarea {
   box-shadow: 0 4px 12px var(--shadow);
 }
 
+.blog-body .blog-video {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+.blog-body .blog-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .blog-cta {
   background: var(--brand-blue);
   color: white;
