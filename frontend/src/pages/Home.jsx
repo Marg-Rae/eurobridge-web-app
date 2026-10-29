@@ -89,6 +89,38 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="panel-section location-section">
+        <div className="location-copy">
+          <div className="section-header">
+            <h2>Find us in Eldoret</h2>
+            <p>Watch the directions video and plan your visit to Eurobridge Language Institute.</p>
+          </div>
+          <p className="location-address">
+            Second Floor, Champion Heights Building, behind Comfy Hotel, Eldoret, Kenya.
+          </p>
+          <a
+            className="button primary"
+            href="https://www.google.com/maps/search/?api=1&query=Second+Floor%2C+Champion+Heights+Building%2C+Behind+Comfy+Hotel%2C+Eldoret%2C+Kenya"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get directions
+          </a>
+        </div>
+        <div className="location-video-container">
+          <video
+            className="location-video"
+            controls
+            playsInline
+            preload="metadata"
+            aria-label="Directions to Eurobridge Language Institute in Eldoret"
+          >
+            <source src="/assets/Video1.mp4" type="video/mp4" />
+            Your browser does not support embedded videos.
+          </video>
+        </div>
+      </section>
+
       <section className="panel-section flashy-announcement-section">
         <div className="section-header">
           <h2 className="flashy-title">

@@ -650,6 +650,38 @@ main {
   font-size: 1.4rem;
 }
 
+.location-section {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.location-copy .section-header {
+  margin-bottom: 1rem;
+}
+
+.location-address {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 1.4rem;
+}
+
+.location-video-container {
+  overflow: hidden;
+  border-radius: 1.2rem;
+  background: #111;
+  box-shadow: 0 12px 30px var(--shadow);
+}
+
+.location-video {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -1913,6 +1945,11 @@ textarea {
 
   .panel-section {
     padding: 1.8rem;
+  }
+
+  .location-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .site-footer {
